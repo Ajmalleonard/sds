@@ -1,0 +1,46 @@
+/* Base CSS with CSS custom properties */
+/* Import this in your app's base CSS */
+
+@import './themes/dark.css';
+
+@layer base {
+  :root {
+    /* Accent colors */
+    --color-accent: 200, 100%, 60%;
+    --color-accent-faint: 200, 100%, 90%;
+    --color-accent-deep: 200, 100%, 40%;
+
+    /* Text colors */
+    --color-ink: 0, 0%, 100%;
+    --color-ink-dull: 0, 0%, 70%;
+    --color-ink-faint: 0, 0%, 50%;
+
+    /* App surface colors */
+    --color-app: 235, 15%, 7%;
+    --color-app-box: 235, 15%, 12%;
+    --color-app-line: 235, 15%, 20%;
+    --color-app-hover: 235, 15%, 15%;
+    --color-app-selected: 235, 15%, 18%;
+
+    /* Sidebar colors */
+    --color-sidebar: 235, 15%, 7%;
+    --color-sidebar-box: 235, 15%, 10%;
+    --color-sidebar-line: 235, 15%, 18%;
+    --color-sidebar-ink: 0, 0%, 100%;
+    --color-sidebar-ink-dull: 0, 0%, 70%;
+    --color-sidebar-selected: 235, 15%, 15%;
+    --color-sidebar-hover: 235, 15%, 12%;
+
+    /* Menu colors */
+    --color-menu: 235, 15%, 10%;
+    --color-menu-line: 235, 15%, 18%;
+    --color-menu-hover: 235, 15%, 15%;
+    --color-menu-ink: 0, 0%, 100%;
+
+    /* Status colors */
+    --color-status-success: 142, 76%, 36%;
+    --color-status-warning: 38, 92%, 50%;
+    --color-status-error: 0, 84%, 60%;
+    --color-status-info: 200, 100%, 60%;
+  }
+}

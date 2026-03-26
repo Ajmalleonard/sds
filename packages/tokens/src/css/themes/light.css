@@ -1,0 +1,36 @@
+/* Light theme */
+/* Invert the dark theme values for a light appearance */
+
+.light {
+  --color-accent: 200, 100%, 45%;
+  --color-accent-faint: 200, 100%, 95%;
+  --color-accent-deep: 200, 100%, 35%;
+
+  --color-ink: 235, 15%, 10%;
+  --color-ink-dull: 235, 15%, 40%;
+  --color-ink-faint: 235, 15%, 60%;
+
+  --color-app: 0, 0%, 98%;
+  --color-app-box: 0, 0%, 95%;
+  --color-app-line: 0, 0%, 85%;
+  --color-app-hover: 0, 0%, 92%;
+  --color-app-selected: 0, 0%, 90%;
+
+  --color-sidebar: 0, 0%, 98%;
+  --color-sidebar-box: 0, 0%, 95%;
+  --color-sidebar-line: 0, 0%, 85%;
+  --color-sidebar-ink: 235, 15%, 10%;
+  --color-sidebar-ink-dull: 235, 15%, 40%;
+  --color-sidebar-selected: 0, 0%, 90%;
+  --color-sidebar-hover: 0, 0%, 92%;
+
+  --color-menu: 0, 0%, 95%;
+  --color-menu-line: 0, 0%, 85%;
+  --color-menu-hover: 0, 0%, 92%;
+  --color-menu-ink: 235, 15%, 10%;
+
+  --color-status-success: 142, 76%, 36%;
+  --color-status-warning: 38, 92%, 50%;
+  --color-status-error: 0, 84%, 60%;
+  --color-status-info: 200, 100%, 45%;
+}
