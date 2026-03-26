@@ -1,36 +1,57 @@
-/* Light theme */
-/* Invert the dark theme values for a light appearance */
+.light,
+.vanilla-theme {
+  --color-black: 0, 0%, 0%;
+  --color-white: 0, 0%, 100%;
+  --color-accent: 208, 100%, 57%;
+  --color-accent-faint: 208, 100%, 67%;
+  --color-accent-deep: 208, 100%, 47%;
 
-.light {
-  --color-accent: 200, 100%, 45%;
-  --color-accent-faint: 200, 100%, 95%;
-  --color-accent-deep: 200, 100%, 35%;
+  --color-ink: var(--light-hue), 5%, 25%;
+  --color-ink-dull: var(--light-hue), 5%, 40%;
+  --color-ink-faint: var(--light-hue), 5%, 60%;
 
-  --color-ink: 235, 15%, 10%;
-  --color-ink-dull: 235, 15%, 40%;
-  --color-ink-faint: 235, 15%, 60%;
+  --color-sidebar: var(--light-hue), 5%, 96%;
+  --color-sidebar-box: var(--light-hue), 5%, 100%;
+  --color-sidebar-line: var(--light-hue), 10%, 85%;
+  --color-sidebar-ink: var(--light-hue), 5%, 25%;
+  --color-sidebar-ink-dull: var(--light-hue), 5%, 35%;
+  --color-sidebar-ink-faint: var(--light-hue), 5%, 45%;
+  --color-sidebar-divider: var(--light-hue), 15%, 93%;
+  --color-sidebar-button: var(--light-hue), 15%, 100%;
+  --color-sidebar-selected: var(--light-hue), 10%, 80%;
+  --color-sidebar-shade: var(--light-hue), 15%, 100%;
 
-  --color-app: 0, 0%, 98%;
-  --color-app-box: 0, 0%, 95%;
-  --color-app-line: 0, 0%, 85%;
-  --color-app-hover: 0, 0%, 92%;
-  --color-app-selected: 0, 0%, 90%;
+  --color-app: var(--light-hue), 5%, 100%;
+  --color-app-box: var(--light-hue), 5%, 98%;
+  --color-app-dark-box: var(--light-hue), 5%, 97%;
+  --color-app-darker-box: var(--light-hue), 5%, 95%;
+  --color-app-light-box: var(--light-hue), 5%, 100%;
+  --color-app-overlay: var(--light-hue), 5%, 100%;
+  --color-app-overlay-shade: var(--light-hue), 15%, 95%;
+  --color-app-input: var(--light-hue), 5%, 100%;
+  --color-app-focus: var(--light-hue), 5%, 98%;
+  --color-app-line: var(--light-hue), 5%, 90%;
+  --color-app-button: var(--light-hue), 5%, 100%;
+  --color-app-divider: var(--light-hue), 5%, 80%;
+  --color-app-selected: var(--light-hue), 5%, 93%;
+  --color-app-selected-item: var(--light-hue), 5%, 96%;
+  --color-app-hover: var(--light-hue), 5%, 97%;
+  --color-app-active: var(--light-hue), 5%, 87%;
+  --color-app-shade: var(--light-hue), 15%, 50%;
+  --color-app-frame: 0, 0%, 100%;
+  --color-app-slider: var(--light-hue), 5%, 95%;
+  --color-app-explorer-scrollbar: var(--light-hue), 5%, 75%;
 
-  --color-sidebar: 0, 0%, 98%;
-  --color-sidebar-box: 0, 0%, 95%;
-  --color-sidebar-line: 0, 0%, 85%;
-  --color-sidebar-ink: 235, 15%, 10%;
-  --color-sidebar-ink-dull: 235, 15%, 40%;
-  --color-sidebar-selected: 0, 0%, 90%;
-  --color-sidebar-hover: 0, 0%, 92%;
-
-  --color-menu: 0, 0%, 95%;
-  --color-menu-line: 0, 0%, 85%;
-  --color-menu-hover: 0, 0%, 92%;
-  --color-menu-ink: 235, 15%, 10%;
+  --color-menu: var(--light-hue), 5%, 98%;
+  --color-menu-line: var(--light-hue), 5%, 95%;
+  --color-menu-ink: var(--light-hue), 5%, 20%;
+  --color-menu-faint: var(--light-hue), 5%, 80%;
+  --color-menu-hover: var(--light-hue), 15%, 20%;
+  --color-menu-selected: var(--light-hue), 5%, 30%;
+  --color-menu-shade: var(--light-hue), 5%, 0%;
 
   --color-status-success: 142, 76%, 36%;
   --color-status-warning: 38, 92%, 50%;
   --color-status-error: 0, 84%, 60%;
-  --color-status-info: 200, 100%, 45%;
+  --color-status-info: 208, 100%, 57%;
 }

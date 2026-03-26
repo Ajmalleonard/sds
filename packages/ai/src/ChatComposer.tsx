@@ -1,137 +1,177 @@
-import { clsx } from 'clsx';
-import { forwardRef, useState, useRef, useEffect } from 'react';
-import { PaperPlaneRight, Microphone, Image as ImageIcon } from '@phosphor-icons/react';
-import { Button } from '@spaceui/primitives';
-import type { ModelOption } from './types';
+import {clsx} from "clsx";
+import {forwardRef, useMemo, useState} from "react";
+import {Microphone, Image as ImageIcon} from "@phosphor-icons/react";
+import {
+	OptionList,
+	OptionListItem,
+	Popover,
+	PopoverContent,
+	PopoverTrigger,
+	SelectTriggerButton,
+} from "@spaceui/primitives";
+import type {ModelOption} from "./types";
 
 interface ChatComposerProps {
-  value: string;
-  onChange: (value: string) => void;
-  onSend: () => void;
-  onVoiceClick?: () => void;
-  onImageClick?: () => void;
-  disabled?: boolean;
-  placeholder?: string;
-  models?: ModelOption[];
-  selectedModel?: string;
-  onModelChange?: (model: string) => void;
-  className?: string;
+	value: string;
+	onChange: (value: string) => void;
+	onSend: () => void;
+	footerStart?: React.ReactNode;
+	onVoiceClick?: () => void;
+	onImageClick?: () => void;
+	disabled?: boolean;
+	placeholder?: string;
+	models?: ModelOption[];
+	selectedModel?: string;
+	onModelChange?: (model: string) => void;
+	className?: string;
 }
 
 const ChatComposer = forwardRef<HTMLDivElement, ChatComposerProps>(
-  ({ 
-    value, 
-    onChange, 
-    onSend, 
-    onVoiceClick, 
-    onImageClick,
-    disabled = false,
-    placeholder = 'Type a message...',
-    models,
-    selectedModel,
-    onModelChange,
-    className 
-  }, ref) => {
-    const [isFocused, setIsFocused] = useState(false);
-    const textareaRef = useRef<HTMLTextAreaElement>(null);
+	(
+		{
+			value,
+			onChange,
+			onSend,
+			footerStart,
+			onVoiceClick,
+			onImageClick,
+			disabled = false,
+			placeholder = "Ask the agent to review a project, plan work, or start a task...",
+			models,
+			selectedModel,
+			onModelChange,
+			className,
+		},
+		ref,
+	) => {
+		const [isFocused, setIsFocused] = useState(false);
+		const [modelOpen, setModelOpen] = useState(false);
 
-    useEffect(() => {
-      if (textareaRef.current) {
-        textareaRef.current.style.height = 'auto';
-        textareaRef.current.style.height = `${Math.min(textareaRef.current.scrollHeight, 200)}px`;
-      }
-    }, [value]);
+		const isExpanded = isFocused || value.trim().length > 0;
+		const canSend = !disabled && value.trim().length > 0;
 
-    const handleKeyDown = (e: React.KeyboardEvent) => {
-      if (e.key === 'Enter' && !e.shiftKey) {
-        e.preventDefault();
-        if (!disabled && value.trim()) {
-          onSend();
-        }
-      }
-    };
+		const selectedModelOption = useMemo(
+			() => models?.find((model) => model.id === selectedModel),
+			[models, selectedModel],
+		);
 
-    return (
-      <div
-        ref={ref}
-        className={clsx(
-          'rounded-xl border border-app-line bg-app-box transition-all',
-          isFocused && 'border-accent ring-2 ring-accent/20',
-          className
-        )}
-      >
-        {models && onModelChange && (
-          <div className="flex items-center gap-2 border-b border-app-line px-3 py-2">
-            <select
-              value={selectedModel}
-              onChange={(e) => onModelChange(e.target.value)}
-              className="bg-transparent text-xs text-ink-dull focus:outline-none"
-            >
-              {models.map((model) => (
-                <option key={model.id} value={model.id}>
-                  {model.name}
-                </option>
-              ))}
-            </select>
-          </div>
-        )}
+		const handleKeyDown = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
+			if (event.key === "Enter" && !event.shiftKey) {
+				event.preventDefault();
+				if (canSend) {
+					onSend();
+				}
+			}
+		};
 
-        <div className="p-3">
-          <textarea
-            ref={textareaRef}
-            value={value}
-            onChange={(e) => onChange(e.target.value)}
-            onFocus={() => setIsFocused(true)}
-            onBlur={() => setIsFocused(false)}
-            onKeyDown={handleKeyDown}
-            placeholder={placeholder}
-            disabled={disabled}
-            rows={1}
-            className="w-full resize-none bg-transparent text-sm text-ink placeholder:text-ink-faint focus:outline-none min-h-[24px] max-h-[200px]"
-          />
+		return (
+			<div
+				ref={ref}
+				className={clsx(
+					"rounded-[28px] border border-app-line bg-app-box/70 p-4 shadow-[0_30px_80px_rgba(0,0,0,0.22)] backdrop-blur-2xl",
+					className,
+				)}
+			>
+				<div
+					className={clsx(
+						"overflow-hidden rounded-[20px] border border-app-line bg-app p-4 transition-all duration-200",
+						isExpanded ? "min-h-[228px]" : "min-h-[186px]",
+					)}
+				>
+					<textarea
+						value={value}
+						onChange={(event) => onChange(event.target.value)}
+						onFocus={() => setIsFocused(true)}
+						onBlur={() => setIsFocused(false)}
+						onKeyDown={handleKeyDown}
+						placeholder={placeholder}
+						disabled={disabled}
+						rows={4}
+						className="h-[120px] w-full resize-none border-0 bg-transparent text-[15px] leading-7 text-ink outline-none ring-0 placeholder:text-ink-faint focus:outline-none focus:ring-0 focus-visible:outline-none focus-visible:ring-0 disabled:cursor-not-allowed disabled:opacity-60"
+					/>
 
-          <div className="mt-2 flex items-center justify-between">
-            <div className="flex items-center gap-1">
-              {onVoiceClick && (
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className="size-7"
-                  onClick={onVoiceClick}
-                  disabled={disabled}
-                >
-                  <Microphone className="size-4" />
-                </Button>
-              )}
-              {onImageClick && (
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className="size-7"
-                  onClick={onImageClick}
-                  disabled={disabled}
-                >
-                  <ImageIcon className="size-4" />
-                </Button>
-              )}
-            </div>
+					<div className="mt-5 flex items-end justify-between gap-3">
+						<div className="min-w-0 flex-1">{footerStart ?? null}</div>
 
-            <Button
-              variant="default"
-              size="icon"
-              className="size-7"
-              onClick={onSend}
-              disabled={disabled || !value.trim()}
-            >
-              <PaperPlaneRight className="size-4" />
-            </Button>
-          </div>
-        </div>
-      </div>
-    );
-  }
+						<div className="flex items-center gap-2">
+							{models && models.length > 0 && onModelChange ? (
+								<Popover open={modelOpen} onOpenChange={setModelOpen}>
+									<PopoverTrigger asChild>
+										<SelectTriggerButton
+											disabled={disabled}
+											placeholder="Select model"
+										>
+											{selectedModelOption?.name}
+										</SelectTriggerButton>
+									</PopoverTrigger>
+									<PopoverContent
+										align="end"
+										sideOffset={8}
+										className="min-w-[240px] p-2"
+									>
+										<OptionList>
+											{models.map((model) => (
+												<OptionListItem
+													key={model.id}
+													onClick={() => {
+														onModelChange(model.id);
+														setModelOpen(false);
+													}}
+													selected={model.id === selectedModel}
+												>
+													{model.name}
+												</OptionListItem>
+											))}
+										</OptionList>
+									</PopoverContent>
+								</Popover>
+							) : null}
+
+							{onImageClick ? (
+								<button
+									type="button"
+									onClick={onImageClick}
+									disabled={disabled}
+									className="flex size-9 shrink-0 items-center justify-center rounded-full border border-app-line bg-app-box text-ink-dull transition-colors hover:bg-app-hover hover:text-ink disabled:cursor-not-allowed disabled:opacity-60"
+								>
+									<ImageIcon className="size-4" weight="regular" />
+								</button>
+							) : null}
+
+							{onVoiceClick ? (
+								<button
+									type="button"
+									onClick={onVoiceClick}
+									disabled={disabled}
+									className="flex size-9 shrink-0 items-center justify-center rounded-full border border-app-line bg-app-box text-ink-dull transition-colors hover:bg-app-hover hover:text-ink disabled:cursor-not-allowed disabled:opacity-60"
+								>
+									<Microphone className="size-4" weight="fill" />
+								</button>
+							) : null}
+
+							<div
+								className={clsx(
+									"overflow-hidden transition-all duration-200",
+									canSend ? "w-[76px] opacity-100" : "w-0 opacity-0",
+								)}
+							>
+								<button
+									type="button"
+									onClick={onSend}
+									disabled={!canSend}
+									className="flex h-11 w-[76px] items-center justify-center rounded-full border border-app-line bg-accent px-4 text-xs font-medium text-white transition-colors hover:bg-accent-faint disabled:cursor-not-allowed disabled:opacity-60"
+								>
+									<span className="whitespace-nowrap">Send</span>
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		);
+	},
 );
 
-ChatComposer.displayName = 'ChatComposer';
+ChatComposer.displayName = "ChatComposer";
 
-export { ChatComposer };
+export {ChatComposer};

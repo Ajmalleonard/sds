@@ -23,6 +23,21 @@
     },
     "./css/themes/light": {
       "import": "./dist/css/themes/light.css"
+    },
+    "./css/themes/midnight": {
+      "import": "./dist/css/themes/midnight.css"
+    },
+    "./css/themes/noir": {
+      "import": "./dist/css/themes/noir.css"
+    },
+    "./css/themes/slate": {
+      "import": "./dist/css/themes/slate.css"
+    },
+    "./css/themes/nord": {
+      "import": "./dist/css/themes/nord.css"
+    },
+    "./css/themes/mocha": {
+      "import": "./dist/css/themes/mocha.css"
     }
   },
   "files": [

@@ -11,13 +11,16 @@ interface InlineWorkerCardProps {
   transcript: TranscriptStep[];
   onCopyLogs?: () => void;
   onCancel?: () => void;
+  expanded?: boolean;
+  onExpandedChange?: (expanded: boolean) => void;
   className?: string;
 }
 
 const InlineWorkerCard = forwardRef<HTMLDivElement, InlineWorkerCardProps>(
-  ({ task, transcript, onCopyLogs, onCancel, className }, ref) => {
-    const [expanded, setExpanded] = useState(false);
+  ({ task, transcript, onCopyLogs, onCancel, expanded: expandedProp, onExpandedChange, className }, ref) => {
+    const [uncontrolledExpanded, setUncontrolledExpanded] = useState(false);
     const [expandedTools, setExpandedTools] = useState<Set<string>>(new Set());
+    const expanded = expandedProp ?? uncontrolledExpanded;
 
     const pairs = pairTranscriptSteps(transcript);
     const toolCallCount = transcript.filter(t => t.type === 'action').length;
@@ -30,6 +33,13 @@ const InlineWorkerCard = forwardRef<HTMLDivElement, InlineWorkerCardProps>(
         newSet.add(id);
       }
       setExpandedTools(newSet);
+    };
+
+    const setExpanded = (nextExpanded: boolean) => {
+      if (expandedProp === undefined) {
+        setUncontrolledExpanded(nextExpanded);
+      }
+      onExpandedChange?.(nextExpanded);
     };
 
     const statusColors: Record<string, string> = {

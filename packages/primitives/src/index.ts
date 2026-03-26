@@ -82,6 +82,8 @@ export { TopBarButton, TopBarButtonGroup } from './TopBarButton';
 export { Select, SelectGroup, SelectValue, SelectTrigger, SelectContent, SelectLabel, SelectItem, SelectSeparator } from './Select';
 export { NumberStepper } from './NumberStepper';
 export { FilterButton } from './FilterButton';
+export { OptionList, OptionListItem } from './OptionList';
+export { SelectTriggerButton } from './SelectTriggerButton';
 export { ToggleGroup } from './ToggleGroup';
 export { SearchBar } from './SearchBar';
 
@@ -101,6 +103,8 @@ export type { TypographyProps } from './Typography';
 export type { ShortcutProps } from './Shortcut';
 export type { NumberStepperProps } from './NumberStepper';
 export type { FilterButtonProps } from './FilterButton';
+export type { OptionListItemProps, OptionListProps } from './OptionList';
+export type { SelectTriggerButtonProps } from './SelectTriggerButton';
 export type { ToggleOption, ToggleGroupProps } from './ToggleGroup';
 export type { SearchBarProps } from './SearchBar';
 export type { ToastProps as PrimitiveToastProps } from './Toast';

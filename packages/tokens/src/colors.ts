@@ -1,55 +1,68 @@
-// Semantic color definitions - bare HSL values for Tailwind alpha support
-// Format: "H, S%, L%" (not wrapped in hsl())
+const alpha = (variableName: string) => `hsla(var(${variableName}), <alpha-value>)`;
 
 export const colors = {
-  // Accent colors
   accent: {
-    DEFAULT: '200, 100%, 60%',
-    faint: '200, 100%, 90%',
-    deep: '200, 100%, 40%',
+    DEFAULT: alpha('--color-accent'),
+    faint: alpha('--color-accent-faint'),
+    deep: alpha('--color-accent-deep'),
   },
 
-  // Text colors (ink)
   ink: {
-    DEFAULT: '0, 0%, 100%',
-    dull: '0, 0%, 70%',
-    faint: '0, 0%, 50%',
+    DEFAULT: alpha('--color-ink'),
+    dull: alpha('--color-ink-dull'),
+    faint: alpha('--color-ink-faint'),
   },
 
-  // App background/surface colors
   app: {
-    DEFAULT: '235, 15%, 7%',
-    box: '235, 15%, 12%',
-    line: '235, 15%, 20%',
-    hover: '235, 15%, 15%',
-    selected: '235, 15%, 18%',
+    DEFAULT: alpha('--color-app'),
+    box: alpha('--color-app-box'),
+    darkBox: alpha('--color-app-dark-box'),
+    darkerBox: alpha('--color-app-darker-box'),
+    lightBox: alpha('--color-app-light-box'),
+    overlay: alpha('--color-app-overlay'),
+    input: alpha('--color-app-input'),
+    focus: alpha('--color-app-focus'),
+    line: alpha('--color-app-line'),
+    divider: alpha('--color-app-divider'),
+    button: alpha('--color-app-button'),
+    selected: alpha('--color-app-selected'),
+    selectedItem: alpha('--color-app-selected-item'),
+    hover: alpha('--color-app-hover'),
+    active: alpha('--color-app-active'),
+    shade: alpha('--color-app-shade'),
+    frame: alpha('--color-app-frame'),
+    slider: alpha('--color-app-slider'),
+    explorerScrollbar: alpha('--color-app-explorer-scrollbar'),
   },
 
-  // Sidebar colors
   sidebar: {
-    DEFAULT: '235, 15%, 7%',
-    box: '235, 15%, 10%',
-    line: '235, 15%, 18%',
-    ink: '0, 0%, 100%',
-    inkDull: '0, 0%, 70%',
-    selected: '235, 15%, 15%',
-    hover: '235, 15%, 12%',
+    DEFAULT: alpha('--color-sidebar'),
+    box: alpha('--color-sidebar-box'),
+    line: alpha('--color-sidebar-line'),
+    ink: alpha('--color-sidebar-ink'),
+    inkDull: alpha('--color-sidebar-ink-dull'),
+    inkFaint: alpha('--color-sidebar-ink-faint'),
+    divider: alpha('--color-sidebar-divider'),
+    button: alpha('--color-sidebar-button'),
+    selected: alpha('--color-sidebar-selected'),
+    shade: alpha('--color-sidebar-shade'),
   },
 
-  // Menu/dropdown colors
   menu: {
-    DEFAULT: '235, 15%, 10%',
-    line: '235, 15%, 18%',
-    hover: '235, 15%, 15%',
-    ink: '0, 0%, 100%',
+    DEFAULT: alpha('--color-menu'),
+    line: alpha('--color-menu-line'),
+    hover: alpha('--color-menu-hover'),
+    selected: alpha('--color-menu-selected'),
+    shade: alpha('--color-menu-shade'),
+    ink: alpha('--color-menu-ink'),
+    faint: alpha('--color-menu-faint'),
   },
 
-  // Status colors
   status: {
-    success: '142, 76%, 36%',
-    warning: '38, 92%, 50%',
-    error: '0, 84%, 60%',
-    info: '200, 100%, 60%',
+    success: alpha('--color-status-success'),
+    warning: alpha('--color-status-warning'),
+    error: alpha('--color-status-error'),
+    info: alpha('--color-status-info'),
   },
 } as const;
 

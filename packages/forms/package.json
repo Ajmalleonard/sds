@@ -22,7 +22,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@spaceui/primitives": "workspace:*",
+    "@spaceui/primitives": "^0.0.1",
     "clsx": "^2.1.0"
   },
   "devDependencies": {
