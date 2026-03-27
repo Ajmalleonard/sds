@@ -52,7 +52,7 @@ export const SelectPill = forwardRef<HTMLButtonElement, SelectPillProps>(
 			className={clsx(selectPillStyles({variant, size}), className)}
 			{...props}
 		>
-			<span className="flex-1 truncate text-left">{children}</span>
+			<span className="flex flex-1 items-center gap-1.5 truncate text-left">{children}</span>
 			{!hideCaret && <CaretDown className="size-3 shrink-0" weight="bold" />}
 		</button>
 	),
