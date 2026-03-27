@@ -1,110 +1,120 @@
-// @spaceui/primitives - Primitive UI components
-// Built on Radix UI primitives with Tailwind CSS styling
+// @spaceui/primitives
+// Faithful extraction of Spacedrive's @sd/ui components
 
-// Interactive primitives
-export { Button, buttonVariants } from './Button';
-export { Input } from './Input';
-export { Checkbox } from './Checkbox';
-export { Switch } from './Switch';
-export { Slider } from './Slider';
-export { RadioGroup, RadioGroupItem } from './RadioGroup';
+// Button
+export { Button, buttonStyles, buttonStyles as buttonVariants } from "./Button";
+export type { ButtonProps, LinkButtonProps, ButtonBaseProps } from "./Button";
 
-// Overlay primitives
-export {
-  Dialog,
-  DialogPortal,
-  DialogOverlay,
-  DialogTrigger,
-  DialogClose,
-  DialogContent,
-  DialogHeader,
-  DialogFooter,
-  DialogTitle,
-  DialogDescription,
-} from './Dialog';
-export { Popover, PopoverTrigger, PopoverContent, PopoverAnchor } from './Popover';
-export { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider } from './Tooltip';
+// Input
+export { Input, SearchInput, TextArea, PasswordInput, Label, inputStyles, inputSizes } from "./Input";
+export type { InputProps, TextareaProps, InputBaseProps, LabelProps } from "./Input";
 
-// Navigation primitives
-export { Tabs, TabsList, TabsTrigger, TabsContent } from './Tabs';
-export {
-  DropdownMenu,
-  DropdownMenuTrigger,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuCheckboxItem,
-  DropdownMenuRadioItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuShortcut,
-  DropdownMenuGroup,
-  DropdownMenuPortal,
-  DropdownMenuSub,
-  DropdownMenuSubContent,
-  DropdownMenuSubTrigger,
-  DropdownMenuRadioGroup,
-} from './DropdownMenu';
-export {
-  ContextMenu,
-  ContextMenuTrigger,
-  ContextMenuContent,
-  ContextMenuItem,
-  ContextMenuCheckboxItem,
-  ContextMenuRadioItem,
-  ContextMenuLabel,
-  ContextMenuSeparator,
-  ContextMenuShortcut,
-  ContextMenuGroup,
-  ContextMenuPortal,
-  ContextMenuSub,
-  ContextMenuSubContent,
-  ContextMenuSubTrigger,
-  ContextMenuRadioGroup,
-} from './ContextMenu';
-export { Dropdown, DropdownItem, DropdownSeparator } from './Dropdown';
+// Checkbox
+export { CheckBox, RadixCheckbox } from "./Checkbox";
+export type { CheckBoxProps, RadixCheckboxProps } from "./Checkbox";
 
-// Display primitives
-export { Badge, badgeVariants } from './Badge';
-export { Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent } from './Card';
-export { Banner, bannerVariants } from './Banner';
-export { Toast } from './Toast';
-export { Loader } from './Loader';
-export { Divider } from './Divider';
-export { Typography, headingVariants, bodyVariants } from './Typography';
-export { Shortcut } from './Shortcut';
+// Switch
+export { Switch } from "./Switch";
+export type { SwitchProps } from "./Switch";
 
-// Layout primitives
-export { Collapsible, CollapsibleTrigger, CollapsibleContent } from './Collapsible';
-export { ResizablePanelGroup, ResizablePanel } from './Resizable';
-export { TopBarButton, TopBarButtonGroup } from './TopBarButton';
+// Slider
+export { Slider } from "./Slider";
 
-// Form primitives
-export { Select, SelectGroup, SelectValue, SelectTrigger, SelectContent, SelectLabel, SelectItem, SelectSeparator } from './Select';
-export { NumberStepper } from './NumberStepper';
-export { FilterButton } from './FilterButton';
-export { OptionList, OptionListItem } from './OptionList';
-export { SelectTriggerButton } from './SelectTriggerButton';
-export { ToggleGroup } from './ToggleGroup';
-export { SearchBar } from './SearchBar';
+// RadioGroup
+export { Root as RadioGroupRoot, Item as RadioGroupItem } from "./RadioGroup";
+export type { RootProps as RadioGroupRootProps, ItemProps as RadioGroupItemProps } from "./RadioGroup";
 
-// Progress primitives
-export { ProgressBar } from './ProgressBar';
-export { CircularProgress } from './CircularProgress';
+// Dialog
+export { Dialog, dialogManager, useDialog, Dialogs } from "./Dialog";
+export type { DialogProps, DialogState, DialogOptions, UseDialogProps } from "./Dialog";
 
-// Types
-export type { ButtonProps } from './Button';
-export type { InputProps } from './Input';
-export type { BadgeProps } from './Badge';
-export type { BannerProps } from './Banner';
-export type { ToastProps } from './Toast';
-export type { LoaderProps } from './Loader';
-export type { DividerProps } from './Divider';
-export type { TypographyProps } from './Typography';
-export type { ShortcutProps } from './Shortcut';
-export type { NumberStepperProps } from './NumberStepper';
-export type { FilterButtonProps } from './FilterButton';
-export type { OptionListItemProps, OptionListProps } from './OptionList';
-export type { SelectTriggerButtonProps } from './SelectTriggerButton';
-export type { ToggleOption, ToggleGroupProps } from './ToggleGroup';
-export type { SearchBarProps } from './SearchBar';
-export type { ToastProps as PrimitiveToastProps } from './Toast';
+// Popover
+export { Popover, usePopover, PopoverClose } from "./Popover";
+
+// Tooltip
+export { Tooltip, TooltipProvider, Kbd } from "./Tooltip";
+export type { TooltipProps } from "./Tooltip";
+
+// Tabs
+export { Root as TabsRoot, List as TabsList, Trigger as TabsTrigger, Content as TabsContent } from "./Tabs";
+
+// DropdownMenu (custom framer-motion, NOT Radix)
+export { DropdownMenu } from "./DropdownMenu";
+
+// ContextMenu (Radix with custom object API)
+export { ContextMenu, ContextMenuDivItem, useContextMenuContext, contextMenuClassNames, contextMenuItemClassNames, contextMenuSeparatorClassNames } from "./ContextMenu";
+export type { ContextMenuItemProps, ContextMenuCheckboxItemProps } from "./ContextMenu";
+
+// Dropdown (Headless UI)
+export * as Dropdown from "./Dropdown";
+
+// Select
+export { Select, SelectOption, selectStyles } from "./Select";
+export type { SelectProps } from "./Select";
+
+// Toast (Sonner-based)
+export { toast, Toaster, TOAST_TIMEOUT } from "./Toast";
+export type { ToastId, ToastMessage } from "./Toast";
+
+// Loader
+export { Loader } from "./Loader";
+
+// Divider
+export { Divider } from "./Divider";
+
+// ProgressBar
+export { ProgressBar } from "./ProgressBar";
+export type { ProgressBarProps } from "./ProgressBar";
+
+// CircularProgress
+export { CircularProgress } from "./CircularProgress";
+export type { CircularProgressProps } from "./CircularProgress";
+
+// SearchBar
+export { SearchBar } from "./SearchBar";
+
+// Shortcut
+export { Shortcut } from "./Shortcut";
+export type { ShortcutProps } from "./Shortcut";
+
+// TopBar
+export { TopBarButton } from "./TopBarButton";
+export { TopBarButtonGroup } from "./TopBarButtonGroup";
+
+// Shiny components
+export { ShinyButton } from "./ShinyButton";
+export type { ShinyButtonProps } from "./ShinyButton";
+export { ShinyToggle } from "./ShinyToggle";
+
+// InfoBanner
+export { InfoBanner, InfoBannerText, InfoBannerSubtext } from "./InfoBanner";
+
+// Layout
+export { Card, GridLayout } from "./Layout";
+
+// Typography
+export { CategoryHeading, ScreenHeading } from "./Typography";
+
+// Resizable
+export { Resizable, ResizablePanel, ResizableHandle, useResizableContext } from "./Resizable";
+
+// Keys
+export { ModifierKeys, EditingKeys, UIKeys, NavigationKeys, modifierSymbols, keySymbols } from "./keys";
+export type { OSforKeys } from "./keys";
+
+// Utilities
+export { tw } from "./utils";
+
+// Forms
+export { Form, ErrorMessage, errorStyles, z } from "./forms/Form";
+export type { FormProps, ErrorMessageProps } from "./forms/Form";
+
+// Spacebot-origin components (kept from original extraction, audit pending)
+export { Badge, badgeVariants } from "./Badge";
+export { Banner, bannerVariants } from "./Banner";
+export { ToggleGroup } from "./ToggleGroup";
+export { Collapsible, CollapsibleTrigger, CollapsibleContent } from "./Collapsible";
+export { NumberStepper } from "./NumberStepper";
+export { FilterButton } from "./FilterButton";
+export { OptionList, OptionListItem } from "./OptionList";
+export { SelectTriggerButton } from "./SelectTriggerButton";

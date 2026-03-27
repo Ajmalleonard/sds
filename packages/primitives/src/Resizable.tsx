@@ -1,107 +1,126 @@
-import { clsx } from 'clsx';
-import { forwardRef, useState, useCallback, useEffect } from 'react';
+"use client";
 
-interface ResizablePanelGroupProps extends React.HTMLAttributes<HTMLDivElement> {
-  direction?: 'horizontal' | 'vertical';
+import clsx from "clsx";
+import {
+	createContext,
+	type HTMLAttributes,
+	type PropsWithChildren,
+	useContext,
+	useEffect,
+	useRef,
+} from "react";
+import {
+	type Resizable as ResizableType,
+	useResizable,
+	type UseResizableProps,
+} from "react-resizable-layout";
+
+type ResizableContextProps = ResizableType & {
+	size: number;
+	collapsed: boolean;
+};
+
+const ResizableContext = createContext<ResizableContextProps | null>(null);
+
+const useResizableContext = () => {
+	const context = useContext(ResizableContext);
+
+	if (!context)
+		throw new Error("ResizableContext.Provider not found!");
+
+	return context;
+};
+
+interface ResizableProps
+	extends Omit<PropsWithChildren<UseResizableProps>, "axis"> {
+	axis?: UseResizableProps["axis"];
+	collapsed?: boolean;
+	onCollapseChange?: (val: boolean) => void;
 }
 
-const ResizablePanelGroup = forwardRef<HTMLDivElement, ResizablePanelGroupProps>(
-  ({ direction = 'horizontal', className, children, ...props }, ref) => {
-    return (
-      <div
-        ref={ref}
-        className={clsx(
-          'flex',
-          direction === 'horizontal' ? 'flex-row' : 'flex-col',
-          className
-        )}
-        {...props}
-      >
-        {children}
-      </div>
-    );
-  }
-);
+const Resizable = ({ axis = "x", ...props }: ResizableProps) => {
+	const resizable = useResizable({ axis, ...props });
 
-ResizablePanelGroup.displayName = 'ResizablePanelGroup';
+	const minSizeClientX = useRef<number | null>(null);
 
-interface ResizablePanelProps extends React.HTMLAttributes<HTMLDivElement> {
-  defaultSize?: number;
-  minSize?: number;
-  maxSize?: number;
-  resizable?: boolean;
-  onResize?: (size: number) => void;
-}
+	useEffect(() => {
+		if (!props.onCollapseChange || !resizable.isDragging || !props.min)
+			return;
 
-const ResizablePanel = forwardRef<HTMLDivElement, ResizablePanelProps>(
-  ({ defaultSize = 50, minSize = 10, maxSize = 90, resizable = true, onResize, className, children, ...props }, ref) => {
-    const [size, setSize] = useState(defaultSize);
-    const [isDragging, setIsDragging] = useState(false);
+		const handleMouseMove = (e: MouseEvent) => {
+			if (minSizeClientX.current === null) {
+				if (props.min === resizable.position && !props.collapsed) {
+					minSizeClientX.current = e.clientX;
+				}
+				return;
+			}
 
-    const handleMouseDown = useCallback(() => {
-      if (!resizable) return;
-      setIsDragging(true);
-    }, [resizable]);
+			const half = minSizeClientX.current / 2;
 
-    useEffect(() => {
-      if (!isDragging) return;
+			if (e.clientX < half && !props.collapsed)
+				props.onCollapseChange!(true);
+			else if (e.clientX > half && props.collapsed)
+				props.onCollapseChange!(false);
+		};
 
-      const handleMouseMove = (e: MouseEvent) => {
-        const parent = (e.target as HTMLElement).closest('[data-resizable-group]') as HTMLElement | null;
-        if (!parent) return;
-        
-        const rect = parent.getBoundingClientRect();
-        const isHorizontal = parent.classList.contains('flex-row');
-        
-        let newSize: number;
-        if (isHorizontal) {
-          newSize = ((e.clientX - rect.left) / rect.width) * 100;
-        } else {
-          newSize = ((e.clientY - rect.top) / rect.height) * 100;
-        }
-        
-        newSize = Math.max(minSize, Math.min(maxSize, newSize));
-        setSize(newSize);
-        onResize?.(newSize);
-      };
+		document.addEventListener("mousemove", handleMouseMove);
+		return () =>
+			document.removeEventListener("mousemove", handleMouseMove);
+	}, [
+		props.min,
+		props.collapsed,
+		props.onCollapseChange,
+		resizable.isDragging,
+		resizable.position,
+	]);
 
-      const handleMouseUp = () => {
-        setIsDragging(false);
-      };
+	useEffect(() => {
+		if (!resizable.isDragging) {
+			minSizeClientX.current = null;
+			document.body.style.cursor = "";
+		} else {
+			const cursor = axis === "x" ? "col-resize" : "row-resize";
+			document.body.style.setProperty("cursor", cursor, "important");
+		}
+	}, [resizable.isDragging, axis]);
 
-      document.addEventListener('mousemove', handleMouseMove);
-      document.addEventListener('mouseup', handleMouseUp);
+	return (
+		<ResizableContext.Provider
+			value={{
+				...resizable,
+				size: props.collapsed ? 0 : resizable.position,
+				collapsed: !!props.collapsed,
+			}}
+		>
+			{props.children}
+		</ResizableContext.Provider>
+	);
+};
 
-      return () => {
-        document.removeEventListener('mousemove', handleMouseMove);
-        document.removeEventListener('mouseup', handleMouseUp);
-      };
-    }, [isDragging, minSize, maxSize, onResize]);
+const ResizablePanel = (props: HTMLAttributes<HTMLDivElement>) => {
+	const resizable = useResizableContext();
+	return <div style={{ width: resizable.size }} {...props} />;
+};
 
-    return (
-      <div
-        ref={ref}
-        data-resizable-panel
-        className={clsx('relative flex', className)}
-        style={{ flex: `0 0 ${size}%` }}
-        {...props}
-      >
-        {children}
-        {resizable && (
-          <div
-            className={clsx(
-              'absolute z-10 bg-accent/0 hover:bg-accent/50 transition-colors',
-              'right-0 top-0 bottom-0 w-1 cursor-col-resize',
-              isDragging && 'bg-accent'
-            )}
-            onMouseDown={handleMouseDown}
-          />
-        )}
-      </div>
-    );
-  }
-);
+const ResizableHandle = ({
+	className,
+	...props
+}: HTMLAttributes<HTMLDivElement>) => {
+	const resizable = useResizableContext();
 
-ResizablePanel.displayName = 'ResizablePanel';
+	return (
+		<div
+			className={clsx(
+				"w-2",
+				"aria-[orientation=horizontal]:cursor-row-resize aria-[orientation=vertical]:cursor-col-resize",
+				"after:absolute after:inset-y-0 after:left-0.5 after:w-0.5 after:bg-accent after:opacity-0 after:transition-opacity hover:after:opacity-100",
+				resizable.isDragging && "after:opacity-100",
+				className,
+			)}
+			{...props}
+			{...resizable.separatorProps}
+		/>
+	);
+};
 
-export { ResizablePanelGroup, ResizablePanel };
+export { Resizable, ResizableHandle, ResizablePanel, useResizableContext };
