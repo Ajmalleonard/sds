@@ -1,76 +1,26 @@
 {
-  "name": "@spaceui/tokens",
-  "version": "0.0.1",
-  "description": "Design tokens and Tailwind preset for SpaceUI",
-  "type": "module",
-  "main": "./dist/index.js",
-  "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js"
-    },
-    "./raw-colors": {
-      "types": "./raw-colors.d.ts",
-      "import": "./raw-colors.cjs",
-      "require": "./raw-colors.cjs"
-    },
-    "./spacedrive-tailwind": {
-      "import": "./spacedrive-tailwind.cjs",
-      "require": "./spacedrive-tailwind.cjs"
-    },
-    "./tailwind": {
-      "types": "./dist/tailwind-preset.d.ts",
-      "import": "./dist/tailwind-preset.js"
-    },
-    "./css": {
-      "import": "./dist/css/base.css"
-    },
-    "./css/themes/dark": {
-      "import": "./dist/css/themes/dark.css"
-    },
-    "./css/themes/light": {
-      "import": "./dist/css/themes/light.css"
-    },
-    "./css/themes/midnight": {
-      "import": "./dist/css/themes/midnight.css"
-    },
-    "./css/themes/noir": {
-      "import": "./dist/css/themes/noir.css"
-    },
-    "./css/themes/slate": {
-      "import": "./dist/css/themes/slate.css"
-    },
-    "./css/themes/nord": {
-      "import": "./dist/css/themes/nord.css"
-    },
-    "./css/themes/mocha": {
-      "import": "./dist/css/themes/mocha.css"
-    }
-  },
-  "files": [
-    "dist"
-  ],
-  "dependencies": {
-    "@headlessui/tailwindcss": "^0.2.0",
-    "@tailwindcss/forms": "^0.5.7",
-    "@tailwindcss/typography": "^0.5.10",
-    "tailwindcss-animate": "^1.0.7",
-    "tailwindcss-radix": "^2.8.0"
-  },
-  "scripts": {
-    "build": "tsup",
-    "dev": "tsup --watch",
-    "clean": "rm -rf dist",
-    "typecheck": "tsc --noEmit"
-  },
-  "devDependencies": {
-    "tsup": "^8.0.0",
-    "typescript": "^5.4.0",
-    "tailwindcss": "^3.4.0"
-  },
-  "peerDependencies": {
-    "tailwindcss": "^3.4.0"
-  }
+	"name": "@spaceui/tokens",
+	"version": "0.0.1",
+	"description": "Design tokens for SpaceUI - Pure CSS for Tailwind v4",
+	"type": "module",
+	"exports": {
+		"./theme": "./src/css/theme.css",
+		"./css": "./src/css/base.css",
+		"./css/themes/dark": "./src/css/themes/dark.css",
+		"./css/themes/light": "./src/css/themes/light.css",
+		"./css/themes/midnight": "./src/css/themes/midnight.css",
+		"./css/themes/noir": "./src/css/themes/noir.css",
+		"./css/themes/slate": "./src/css/themes/slate.css",
+		"./css/themes/nord": "./src/css/themes/nord.css",
+		"./css/themes/mocha": "./src/css/themes/mocha.css",
+		"./raw-colors": {
+			"import": "./raw-colors.cjs",
+			"require": "./raw-colors.cjs"
+		}
+	},
+	"files": [
+		"src/css",
+		"raw-colors.cjs",
+		"raw-colors.d.ts"
+	]
 }

@@ -17,10 +17,9 @@ const config: StorybookConfig = {
     options: {},
   },
   viteFinal: async (config) => {
-    // Ensure CSS is properly loaded
-    config.css = {
-      postcss: true,
-    };
+    // Add Tailwind CSS v4 Vite plugin
+    const tailwindcss = (await import('@tailwindcss/vite')).default;
+    config.plugins = [...(config.plugins || []), tailwindcss()];
     return config;
   },
 };
