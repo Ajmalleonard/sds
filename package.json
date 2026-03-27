@@ -28,5 +28,9 @@
   "packageManager": "bun@1.1.0",
   "engines": {
     "node": ">=18"
+  },
+  "overrides": {
+    "@types/react": "19.2.14",
+    "@types/react-dom": "19.2.3"
   }
 }

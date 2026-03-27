@@ -1,12 +1,22 @@
 import * as CollapsiblePrimitive from '@radix-ui/react-collapsible';
 import { clsx } from 'clsx';
-import { forwardRef } from 'react';
+import {
+  forwardRef,
+  type ComponentProps,
+  type ComponentPropsWithoutRef,
+  type ElementRef,
+  type FC,
+  type ForwardRefExoticComponent,
+  type RefAttributes,
+} from 'react';
 
-const Collapsible = CollapsiblePrimitive.Root;
+const Collapsible: FC<
+  ComponentProps<typeof CollapsiblePrimitive.Root>
+> = CollapsiblePrimitive.Root;
 
 const CollapsibleTrigger = forwardRef<
-  React.ElementRef<typeof CollapsiblePrimitive.CollapsibleTrigger>,
-  React.ComponentPropsWithoutRef<typeof CollapsiblePrimitive.CollapsibleTrigger>
+  ElementRef<typeof CollapsiblePrimitive.CollapsibleTrigger>,
+  ComponentPropsWithoutRef<typeof CollapsiblePrimitive.CollapsibleTrigger>
 >(({ className, children, ...props }, ref) => (
   <CollapsiblePrimitive.CollapsibleTrigger
     ref={ref}
@@ -24,9 +34,18 @@ const CollapsibleTrigger = forwardRef<
 
 CollapsibleTrigger.displayName = CollapsiblePrimitive.CollapsibleTrigger.displayName;
 
+const CollapsibleTriggerExp: ForwardRefExoticComponent<
+  ComponentPropsWithoutRef<
+    typeof CollapsiblePrimitive.CollapsibleTrigger
+  > &
+    RefAttributes<
+      ElementRef<typeof CollapsiblePrimitive.CollapsibleTrigger>
+    >
+> = CollapsibleTrigger;
+
 const CollapsibleContent = forwardRef<
-  React.ElementRef<typeof CollapsiblePrimitive.CollapsibleContent>,
-  React.ComponentPropsWithoutRef<typeof CollapsiblePrimitive.CollapsibleContent>
+  ElementRef<typeof CollapsiblePrimitive.CollapsibleContent>,
+  ComponentPropsWithoutRef<typeof CollapsiblePrimitive.CollapsibleContent>
 >(({ className, children, ...props }, ref) => (
   <CollapsiblePrimitive.CollapsibleContent
     ref={ref}
@@ -43,4 +62,17 @@ const CollapsibleContent = forwardRef<
 
 CollapsibleContent.displayName = CollapsiblePrimitive.CollapsibleContent.displayName;
 
-export { Collapsible, CollapsibleTrigger, CollapsibleContent };
+const CollapsibleContentExp: ForwardRefExoticComponent<
+  ComponentPropsWithoutRef<
+    typeof CollapsiblePrimitive.CollapsibleContent
+  > &
+    RefAttributes<
+      ElementRef<typeof CollapsiblePrimitive.CollapsibleContent>
+    >
+> = CollapsibleContent;
+
+export {
+  Collapsible,
+  CollapsibleTriggerExp as CollapsibleTrigger,
+  CollapsibleContentExp as CollapsibleContent,
+};

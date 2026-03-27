@@ -12,7 +12,7 @@ import {
 	useContext,
 } from "react";
 
-interface ContextMenuProps extends RadixCM.MenuContentProps {
+interface ContextMenuProps extends RadixCM.ContextMenuContentProps {
 	trigger: React.ReactNode;
 	onOpenChange?: (open: boolean) => void;
 	disabled?: boolean;
@@ -86,7 +86,7 @@ const SubMenu = ({
 	icon,
 	className,
 	...props
-}: RadixCM.MenuSubContentProps & ContextMenuItemProps) => {
+}: RadixCM.ContextMenuSubContentProps & ContextMenuItemProps) => {
 	return (
 		<RadixCM.Sub>
 			<RadixCM.SubTrigger className={contextMenuItemClassNames}>
@@ -135,7 +135,7 @@ const contextMenuItemStyles = cva(
 );
 
 export interface ContextMenuItemProps
-	extends RadixCM.MenuItemProps,
+	extends RadixCM.ContextMenuItemProps,
 		VariantProps<typeof contextMenuItemStyles>,
 		Pick<
 			ContextMenuInnerItemProps,
@@ -169,7 +169,7 @@ const Item = ({
 };
 
 export interface ContextMenuCheckboxItemProps
-	extends RadixCM.MenuCheckboxItemProps,
+	extends RadixCM.ContextMenuCheckboxItemProps,
 		VariantProps<typeof contextMenuItemStyles>,
 		Pick<ContextMenuInnerItemProps, "label" | "keybind"> {}
 
