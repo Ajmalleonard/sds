@@ -237,7 +237,7 @@ export function Dialog<S extends FieldValues>({
 		<RDialog.Close asChild>
 			<Button
 				size="sm"
-				variant={props.cancelDanger ? "colored" : "gray"}
+				variant={props.cancelDanger ? "destructive" : "secondary"}
 				onClick={
 					typeof onCancelled === "function" ? onCancelled : undefined
 				}
@@ -255,7 +255,7 @@ export function Dialog<S extends FieldValues>({
 			<Button
 				disabled={props.loading}
 				size="sm"
-				variant="gray"
+				variant="secondary"
 				onClick={
 					typeof onCancelled === "function" ? onCancelled : undefined
 				}
@@ -282,7 +282,7 @@ export function Dialog<S extends FieldValues>({
 					props.submitDisabled ||
 					disableCheck
 				}
-				variant={props.ctaDanger ? "colored" : "accent"}
+				variant={props.ctaDanger ? "destructive" : "default"}
 				onClick={async (e: React.MouseEvent<HTMLElement>) => {
 					e.preventDefault();
 					await onSubmit?.(e);
@@ -301,7 +301,7 @@ export function Dialog<S extends FieldValues>({
 						props.submitDisabled ||
 						disableCheck
 					}
-					variant={props.ctaDanger ? "colored" : "accent"}
+					variant={props.ctaDanger ? "destructive" : "default"}
 					className={clsx(
 						props.ctaDanger && "border-red-500 bg-red-500",
 					)}
@@ -321,7 +321,7 @@ export function Dialog<S extends FieldValues>({
 						props.submitDisabled ||
 						disableCheck
 					}
-					variant="accent"
+					variant="default"
 					onClick={async (e: React.MouseEvent<HTMLElement>) => {
 						e.preventDefault();
 						await onSubmitSecond?.(e);
@@ -343,14 +343,14 @@ export function Dialog<S extends FieldValues>({
 				show ? (
 					<RDialog.Portal forceMount>
 						<AnimatedDialogOverlay
-							className="fixed inset-0 z-[102] m-px grid place-items-center overflow-y-auto rounded-xl bg-app/50"
+							className="fixed inset-0 z-102 m-px grid place-items-center overflow-y-auto rounded-xl bg-app/50"
 							style={{
 								opacity: styles.opacity,
 							}}
 						/>
 
 						<AnimatedDialogContent
-							className="!pointer-events-none fixed inset-0 z-[103] grid place-items-center overflow-y-auto"
+							className="pointer-events-none! fixed inset-0 z-103 grid place-items-center overflow-y-auto"
 							style={styles}
 							onInteractOutside={(e) =>
 								props.ignoreClickOutside && e.preventDefault()
@@ -365,7 +365,7 @@ export function Dialog<S extends FieldValues>({
 									}
 								}}
 								className={clsx(
-									"!pointer-events-auto my-8 min-w-[300px] max-w-[400px] rounded-xl",
+									"pointer-events-auto! my-8 min-w-[300px] max-w-[400px] rounded-xl",
 									"border border-app-line bg-app-box text-ink shadow-app-shade",
 									props.formClassName,
 								)}

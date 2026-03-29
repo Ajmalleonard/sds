@@ -10,7 +10,7 @@ export { Input, SearchInput, TextArea, PasswordInput, Label, inputStyles, inputS
 export type { InputProps, TextareaProps, InputBaseProps, LabelProps } from "./Input";
 
 // Checkbox
-export { CheckBox, RadixCheckbox } from "./Checkbox";
+export { CheckBox, CheckBox as Checkbox, RadixCheckbox } from "./Checkbox";
 export type { CheckBoxProps, RadixCheckboxProps } from "./Checkbox";
 
 // Switch
@@ -21,7 +21,7 @@ export type { SwitchProps } from "./Switch";
 export { Slider } from "./Slider";
 
 // RadioGroup
-export { Root as RadioGroupRoot, Item as RadioGroupItem } from "./RadioGroup";
+export { Root as RadioGroup, Root as RadioGroupRoot, Item as RadioGroupItem } from "./RadioGroup";
 export type { RootProps as RadioGroupRootProps, ItemProps as RadioGroupItemProps } from "./RadioGroup";
 
 // Dialog
@@ -55,7 +55,24 @@ export type { ContextMenuItemProps, ContextMenuCheckboxItemProps } from "./Conte
 export * as Dropdown from "./Dropdown";
 
 // Select
-export { Select, SelectOption, selectStyles } from "./Select";
+export {
+	Select,
+	SelectOption,
+	SelectRoot,
+	SelectTrigger,
+	SelectValue,
+	SelectIcon,
+	SelectPortal,
+	SelectContent,
+	SelectViewport,
+	SelectItem,
+	SelectItemText,
+	SelectItemIndicator,
+	SelectGroup,
+	SelectLabel,
+	SelectSeparator,
+	selectStyles,
+} from "./Select";
 export type { SelectProps } from "./Select";
 
 // SelectPill

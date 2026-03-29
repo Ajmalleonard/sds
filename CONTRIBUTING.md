@@ -14,8 +14,8 @@ Thank you for your interest in contributing to Square Experience! This guide wil
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/spacedriveapp/square-experience.git
-   cd square-experience
+   git clone https://github.com/ajmalleonard/sds.git
+   cd sds
    ```
 
 2. **Install dependencies**

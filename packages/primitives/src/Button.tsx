@@ -2,17 +2,20 @@
 
 import {cva, cx, type VariantProps} from "class-variance-authority";
 import {forwardRef} from "react";
+import { Loader } from "./Loader";
 
 export type ButtonBaseProps = VariantProps<typeof buttonStyles>;
 
 export type ButtonProps = ButtonBaseProps &
 	React.ButtonHTMLAttributes<HTMLButtonElement> & {
 		href?: undefined;
+		loading?: boolean;
 	};
 
 export type LinkButtonProps = ButtonBaseProps &
 	React.AnchorHTMLAttributes<HTMLAnchorElement> & {
 		href?: string;
+		loading?: boolean;
 	};
 
 
@@ -23,44 +26,23 @@ const hasHref = (
 
 export const buttonStyles = cva(
 	[
-		"cursor-default items-center border font-medium tracking-wide outline-none transition-colors duration-100",
-		"disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-70",
-		"focus:ring-none focus:ring-offset-none cursor-pointer ring-offset-app-box",
+		"inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+		"cursor-pointer outline-none transition-all duration-100",
 	],
 	{
 		variants: {
 			size: {
-				icon: "!p-1",
-				lg: "text-md px-3 py-1.5 font-medium",
-				md: "px-2.5 py-1.5 text-sm font-medium",
-				sm: "px-2 py-0.5 text-sm font-medium",
-				xs: "px-1.5 py-0.5 text-xs font-normal",
+				default: "px-4 py-2",
+				sm: "h-8 rounded-md px-3 text-xs",
+				lg: "h-10 rounded-md px-8",
+				icon: "h-9 w-9",
 			},
 			variant: {
-				default: [
-					"bg-transparent hover:bg-app-hover active:bg-app-selected",
-					"border border-app-line/80 hover:border-app-line active:border-app-line",
-				],
-				subtle: [
-					"border-transparent hover:border-app-line/50 active:border-app-line active:bg-app-box/30",
-				],
-				outline: [
-					"border-sidebar-line/60 hover:border-sidebar-line active:border-sidebar-line/30",
-				],
-				dotted: [
-					"rounded border border-dashed border-sidebar-line/70 text-center text-xs font-medium text-ink-faint transition hover:border-sidebar-line hover:bg-sidebar-selected/5",
-				],
-				gray: [
-					"bg-app-button hover:bg-app-hover focus:bg-app-selected text-white",
-					"border border-app-line/50 hover:border-app-line/70 focus:ring-1 focus:ring-accent",
-				],
-				accent: [
-					"border-accent bg-accent text-white shadow-md shadow-app-shade/10 hover:brightness-110 focus:outline-none",
-					"focus:ring-1 focus:ring-accent focus:ring-offset-2 focus:ring-offset-app-selected",
-				],
-				colored: [
-					"text-white shadow-sm hover:bg-opacity-90 active:bg-opacity-100",
-				],
+				default: "bg-accent text-white shadow hover:bg-accent/90",
+				secondary: "bg-app-box text-ink-dull shadow-sm hover:bg-app-hover",
+				outline: "border border-app-line bg-transparent shadow-sm hover:bg-app-hover hover:text-ink",
+				ghost: "hover:bg-app-hover hover:text-ink-dull",
+				destructive: "bg-status-error text-white shadow-sm hover:bg-status-error/90",
 				bare: "",
 			},
 			rounding: {
@@ -72,7 +54,7 @@ export const buttonStyles = cva(
 			},
 		},
 		defaultVariants: {
-			size: "sm",
+			size: "default",
 			variant: "default",
 			rounding: "both",
 		},
@@ -82,21 +64,41 @@ export const buttonStyles = cva(
 export const Button = forwardRef<
 	HTMLButtonElement | HTMLAnchorElement,
 	ButtonProps | LinkButtonProps
->(({className, ...props}, ref) => {
-	className = cx(buttonStyles(props), className);
-	return hasHref(props) ? (
-		<a
-			{...props}
-			ref={ref as any}
-			className={cx(className, "inline-block no-underline")}
-		/>
-	) : (
+>(({...props}, ref) => {
+	const {className, disabled, loading, children} = props as any;
+	const isDisabled = disabled || loading;
+	const styles = buttonStyles(props as any);
+	const finalClassName = cx(styles, className);
+
+	const content = (
+		<>
+			{loading && <Loader className="size-4! animate-spin" color="currentColor" />}
+			{children}
+		</>
+	);
+
+	if (hasHref(props)) {
+		return (
+			<a
+				{...(props as any)}
+				ref={ref as any}
+				className={cx(finalClassName, "inline-block no-underline")}
+			>
+				{content}
+			</a>
+		);
+	}
+
+	return (
 		<button
 			type="button"
 			{...(props as ButtonProps)}
+			disabled={isDisabled}
 			ref={ref as any}
-			className={className}
-		/>
+			className={finalClassName}
+		>
+			{content}
+		</button>
 	);
 });
 

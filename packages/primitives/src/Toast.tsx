@@ -182,7 +182,7 @@ const ToastComponent = forwardRef<HTMLDivElement, ToastProps>(
 						<div className="mt-2.5 flex gap-2">
 							{action && (
 								<Button
-									variant="accent"
+									variant="default"
 									onClick={() => {
 										action.onClick();
 										props.onClose?.({
@@ -202,7 +202,7 @@ const ToastComponent = forwardRef<HTMLDivElement, ToastProps>(
 
 							{cancel && (
 								<Button
-									variant="gray"
+									variant="secondary"
 									onClick={() => {
 										if (typeof cancel === "object")
 											cancel.onClick?.();
@@ -313,7 +313,7 @@ const PromiseToast = <T extends ToastPromiseData>({
 			icon={
 				!type &&
 				showLoader &&
-				(props.loader ?? <Loader className="!h-4 !w-4" />)
+				(props.loader ?? <Loader className="h-4! w-4!" />)
 			}
 			closable={!!type}
 			onDismiss={props.onDismiss}

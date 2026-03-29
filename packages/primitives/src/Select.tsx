@@ -84,7 +84,7 @@ export const Select = forwardRef(
 				</RS.Trigger>
 
 				<RS.Portal>
-					<RS.Content className="z-[100] rounded-md border border-app-line bg-app-box shadow-2xl shadow-app-shade/20">
+					<RS.Content className="z-100 rounded-md border border-app-line bg-app-box shadow-2xl shadow-app-shade/20">
 						<RS.Viewport className="p-1">
 							{props.children}
 						</RS.Viewport>
@@ -119,3 +119,17 @@ export function SelectOption(
 		</RS.Item>
 	);
 }
+
+export const SelectRoot = RS.Root;
+export const SelectTrigger = RS.Trigger;
+export const SelectValue = RS.Value;
+export const SelectIcon = RS.Icon;
+export const SelectPortal = RS.Portal;
+export const SelectContent = RS.Content;
+export const SelectViewport = RS.Viewport;
+export const SelectItem = RS.Item;
+export const SelectItemText = RS.ItemText;
+export const SelectItemIndicator = RS.ItemIndicator;
+export const SelectGroup = RS.Group;
+export const SelectLabel = RS.Label;
+export const SelectSeparator = RS.Separator;
