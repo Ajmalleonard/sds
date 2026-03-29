@@ -19,6 +19,7 @@ interface InlineWorkerCardProps {
 	toolCallCount: number;
 	liveStatus?: string | null;
 	transcript: TranscriptStep[];
+	isTranscriptLoading?: boolean;
 	onCopyLogs?: () => void;
 	onCancel?: () => void;
 	className?: string;
@@ -30,6 +31,7 @@ function InlineWorkerCard({
 	toolCallCount,
 	liveStatus,
 	transcript,
+	isTranscriptLoading,
 	onCopyLogs,
 	onCancel,
 	className,
@@ -117,7 +119,11 @@ function InlineWorkerCard({
 							className="overflow-hidden"
 						>
 							<div className="flex flex-col gap-2 border-t border-app-line/30 px-4 py-3">
-								{toolItems.length > 0 ? (
+								{isTranscriptLoading ? (
+									<div className="text-xs text-ink-faint">
+										Loading worker transcript...
+									</div>
+								) : toolItems.length > 0 ? (
 									toolItems.map((item) =>
 										item.kind === 'tool' ? (
 											<ToolCall key={item.pair.id} pair={item.pair} />

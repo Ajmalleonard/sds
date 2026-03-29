@@ -31,6 +31,55 @@ export type TranscriptItem =
 	| { kind: 'text'; text: string }
 	| { kind: 'tool'; pair: ToolCallPair };
 
+// ---------------------------------------------------------------------------
+// Task board types
+// ---------------------------------------------------------------------------
+
+export type TaskStatus = "pending_approval" | "backlog" | "ready" | "in_progress" | "done";
+export type TaskPriority = "critical" | "high" | "medium" | "low";
+
+export interface Subtask {
+	title: string;
+	completed: boolean;
+}
+
+export interface Task {
+	id: string;
+	task_number: number;
+	title: string;
+	description?: string | null;
+	status: TaskStatus;
+	priority: TaskPriority;
+	owner_agent_id: string;
+	assigned_agent_id: string;
+	subtasks: Subtask[];
+	metadata: unknown;
+	worker_id?: string | null;
+	created_by: string;
+	created_at: string;
+	updated_at: string;
+	completed_at?: string | null;
+}
+
+export const TASK_STATUS_ORDER: TaskStatus[] = [
+	"in_progress", "ready", "pending_approval", "backlog", "done",
+];
+
+export const TASK_STATUS_LABEL: Record<TaskStatus, string> = {
+	in_progress: "In Progress",
+	ready: "Ready",
+	pending_approval: "Pending Approval",
+	backlog: "Backlog",
+	done: "Done",
+};
+
+export const TASK_PRIORITY_LABEL: Record<TaskPriority, string> = {
+	critical: "Critical",
+	high: "High",
+	medium: "Medium",
+	low: "Low",
+};
+
 // Domain objects
 export interface TaskInfo {
 	id: string;

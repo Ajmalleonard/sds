@@ -1,0 +1,92 @@
+import { Button } from "@spaceui/primitives";
+import clsx from "clsx";
+import { useCallback, useState } from "react";
+
+import type { TaskPriority } from "./types";
+import { TASK_PRIORITY_LABEL } from "./types";
+
+export interface TaskCreateFormData {
+	title: string;
+	description: string;
+	priority: TaskPriority;
+}
+
+export interface TaskCreateFormProps {
+	onSubmit: (data: TaskCreateFormData) => void;
+	onCancel?: () => void;
+	defaultPriority?: TaskPriority;
+	isSubmitting?: boolean;
+	className?: string;
+}
+
+const PRIORITIES: TaskPriority[] = ["critical", "high", "medium", "low"];
+
+export function TaskCreateForm({
+	onSubmit,
+	onCancel,
+	defaultPriority = "medium",
+	isSubmitting,
+	className,
+}: TaskCreateFormProps) {
+	const [title, setTitle] = useState("");
+	const [description, setDescription] = useState("");
+	const [priority, setPriority] = useState<TaskPriority>(defaultPriority);
+
+	const canSubmit = title.trim().length > 0 && !isSubmitting;
+
+	const handleSubmit = useCallback(() => {
+		if (!canSubmit) return;
+		onSubmit({ title: title.trim(), description: description.trim(), priority });
+		setTitle("");
+		setDescription("");
+		setPriority(defaultPriority);
+	}, [canSubmit, onSubmit, title, description, priority, defaultPriority]);
+
+	return (
+		<div className={clsx("flex flex-col gap-2", className)}>
+			<div className="flex items-center gap-2">
+				<input
+					type="text"
+					value={title}
+					onChange={(e) => setTitle(e.target.value)}
+					onKeyDown={(e) => {
+						if (e.key === "Enter") handleSubmit();
+						if (e.key === "Escape") onCancel?.();
+					}}
+					placeholder="Task title..."
+					className="min-w-0 flex-1 bg-transparent px-2 py-1.5 text-sm text-ink placeholder:text-ink-faint focus:outline-none"
+					disabled={isSubmitting}
+					autoFocus
+				/>
+				<select
+					value={priority}
+					onChange={(e) => setPriority(e.target.value as TaskPriority)}
+					className="rounded border border-app-line bg-app-box px-2 py-1 text-xs text-ink"
+					disabled={isSubmitting}
+				>
+					{PRIORITIES.map((p) => (
+						<option key={p} value={p}>
+							{TASK_PRIORITY_LABEL[p]}
+						</option>
+					))}
+				</select>
+				<Button
+					variant="accent"
+					size="sm"
+					disabled={!canSubmit}
+					onClick={handleSubmit}
+				>
+					Create
+				</Button>
+			</div>
+			<textarea
+				value={description}
+				onChange={(e) => setDescription(e.target.value)}
+				placeholder="Description (optional)"
+				rows={2}
+				className="w-full resize-none bg-transparent px-2 py-1.5 text-sm text-ink placeholder:text-ink-faint focus:outline-none"
+				disabled={isSubmitting}
+			/>
+		</div>
+	);
+}
