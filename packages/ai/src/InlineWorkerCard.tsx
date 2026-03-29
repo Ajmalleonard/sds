@@ -1,12 +1,12 @@
 import { useMemo, useState } from 'react';
 import { clsx } from 'clsx';
 import {
-	CaretDown,
-	CheckCircle,
-	ClockCounterClockwise,
-	Copy,
-	Stop,
-	Wrench
+	CaretDownIcon,
+	CheckCircleIcon,
+	ClockCounterClockwiseIcon,
+	CopyIcon,
+	StopIcon,
+	WrenchIcon
 } from '@phosphor-icons/react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { ToolCall } from './ToolCall';
@@ -58,18 +58,18 @@ function InlineWorkerCard({
 					<div className="mt-0.5 shrink-0">
 						{isRunning ? (
 							<div className="flex size-7 items-center justify-center rounded-full bg-accent/15 text-accent">
-								<ClockCounterClockwise
+								<ClockCounterClockwiseIcon
 									className="size-4 animate-spin"
 									weight="bold"
 								/>
 							</div>
 						) : isDone ? (
 							<div className="flex size-7 items-center justify-center rounded-full bg-emerald-500/15 text-emerald-400">
-								<CheckCircle className="size-4" weight="fill" />
+									<CheckCircleIcon className="size-4" weight="fill" />
 							</div>
 						) : (
 							<div className="flex size-7 items-center justify-center rounded-full bg-app-hover text-ink-dull">
-								<Wrench className="size-4" weight="bold" />
+										<WrenchIcon className="size-4" weight="bold" />
 							</div>
 						)}
 					</div>
@@ -100,7 +100,7 @@ function InlineWorkerCard({
 						</div>
 					</div>
 
-					<CaretDown
+					<CaretDownIcon
 						className={clsx(
 							'mt-1 size-4 shrink-0 text-ink-faint transition-transform',
 							expanded ? 'rotate-180' : ''
@@ -147,7 +147,7 @@ function InlineWorkerCard({
 						className="flex items-center gap-1 rounded-md px-2 py-1 text-xs text-ink-dull hover:bg-app-hover hover:text-ink"
 						title="Copy logs"
 					>
-						<Copy className="size-3.5" />
+						<CopyIcon className="size-3.5" />
 						Copy
 					</button>
 				)}
@@ -157,7 +157,7 @@ function InlineWorkerCard({
 						className="flex items-center gap-1 rounded-md px-2 py-1 text-xs text-ink-dull hover:bg-app-hover hover:text-ink"
 						title="Cancel"
 					>
-						<Stop className="size-3.5" />
+						<StopIcon className="size-3.5" />
 						Cancel
 					</button>
 				)}

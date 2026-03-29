@@ -1,4 +1,4 @@
-import { Checkbox } from '@spaceui/primitives';
+import { Checkbox } from '@square-experience/primitives';
 import { FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from './Form';
 
 export interface CheckboxFieldProps {

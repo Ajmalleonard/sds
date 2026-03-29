@@ -1,4 +1,4 @@
-import { Input } from '@spaceui/primitives';
+import { Input } from '@square-experience/primitives';
 import { FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from './Form';
 
 export interface InputFieldProps {

@@ -1,13 +1,13 @@
-# @spaceui/primitives
+# @square-experience/primitives
 
 Primitive UI components built on Radix UI with Tailwind CSS styling.
 
 ## Installation
 
 ```bash
-bun add @spaceui/primitives @spaceui/tokens
+bun add @square-experience/primitives @square-experience/tokens
 # or
-npm install @spaceui/primitives @spaceui/tokens
+npm install @square-experience/primitives @square-experience/tokens
 ```
 
 Peer dependencies:
@@ -20,26 +20,26 @@ Peer dependencies:
 1. **Configure Tailwind**
    ```typescript
    // tailwind.config.ts
-   import { spaceUiPreset } from '@spaceui/tokens';
+   import { spaceUiPreset } from '@square-experience/tokens';
    
    export default {
      presets: [spaceUiPreset],
      content: [
        './src/**/*.{ts,tsx}',
-       './node_modules/@spaceui/primitives/dist/**/*.{js,ts}'
+       './node_modules/@square-experience/primitives/dist/**/*.{js,ts}'
      ],
    };
    ```
 
 2. **Import CSS**
    ```css
-   @import '@spaceui/tokens/css';
+   @import '@square-experience/tokens/css';
    ```
 
 ## Usage
 
 ```tsx
-import { Button, Card, Dialog, Input, Badge } from '@spaceui/primitives';
+import { Button, Card, Dialog, Input, Badge } from '@square-experience/primitives';
 
 function MyComponent() {
   return (
@@ -112,7 +112,7 @@ All components follow consistent patterns:
 Components use `class-variance-authority` for variants:
 
 ```tsx
-import { buttonVariants } from '@spaceui/primitives';
+import { buttonVariants } from '@square-experience/primitives';
 
 // Use variants directly
 <button className={buttonVariants({ variant: 'secondary', size: 'sm' })}>
@@ -126,7 +126,7 @@ All interactive components support ref forwarding:
 
 ```tsx
 import { useRef } from 'react';
-import { Button } from '@spaceui/primitives';
+import { Button } from '@square-experience/primitives';
 
 function MyComponent() {
   const buttonRef = useRef<HTMLButtonElement>(null);

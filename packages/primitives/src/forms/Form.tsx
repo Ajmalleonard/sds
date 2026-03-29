@@ -2,6 +2,7 @@
 
 import { Warning } from "@phosphor-icons/react";
 import { animated, useTransition } from "@react-spring/web";
+const AnimatedDiv = animated.div as any;
 import { cva, type VariantProps } from "class-variance-authority";
 import { type ComponentProps } from "react";
 import {
@@ -93,13 +94,13 @@ export const ErrorMessage = ({
 			{transitions((styles, error) => {
 				const message = error?.message;
 				return typeof message === "string" ? (
-					<animated.div
+					<AnimatedDiv
 						style={styles}
 						className={errorStyles({ variant, className })}
 					>
 						<Warning className="size-4" />
 						<p className="whitespace-normal">{message}</p>
-					</animated.div>
+					</AnimatedDiv>
 				) : null;
 			})}
 		</>

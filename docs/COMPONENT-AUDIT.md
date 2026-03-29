@@ -1,16 +1,16 @@
-# SpaceUI Component Audit
+# Square Experience Component Audit
 
-Assessment of spaceui components vs the real Spacedrive implementations. Generated 2026-03-26.
+Assessment of square-experience components vs the real Spacedrive implementations. Generated 2026-03-26.
 
 Use this to track migration progress as components are faithfully rebuilt from the real codebase.
 
 **Real Spacedrive UI source:** `spacedrive/packages/ui/src/`
 **Real Spacedrive Explorer source:** `spacedrive/packages/interface/src/components/Explorer/`
-**SpaceUI source:** `spaceui/packages/`
+**Square Experience source:** `square-experience/packages/`
 
 ---
 
-## Primitives (`@spaceui/primitives`)
+## Primitives (`@square-experience/primitives`)
 
 ### Good — Worth keeping, minor fixes needed
 
@@ -27,14 +27,14 @@ Use this to track migration progress as components are faithfully rebuilt from t
 
 | Component | Accuracy | Real Source | Status | Notes |
 |---|---|---|---|---|
-| Tabs | 65% | `ui/src/Tabs.tsx` | 🔨 Rework | Real is minimalist tw() wrapper, spaceui is over-styled |
+| Tabs | 65% | `ui/src/Tabs.tsx` | 🔨 Rework | Real is minimalist tw() wrapper, square-experience is over-styled |
 | Slider | 60% | `ui/src/Slider.tsx` | 🔨 Rework | Core Radix matches, features differ |
-| Select | 50% | `ui/src/Select.tsx` | 🔨 Rework | Real is wrapped controlled component, spaceui exports raw Radix |
+| Select | 50% | `ui/src/Select.tsx` | 🔨 Rework | Real is wrapped controlled component, square-experience exports raw Radix |
 | SearchBar | 50% | `ui/src/SearchBar.tsx` | 🔨 Rework | Real has clear button, sidebar colors, backdrop blur |
-| Dropdown | 50% | `ui/src/Dropdown.tsx` | 🔨 Rework | Real uses Headless UI, spaceui is custom |
+| Dropdown | 50% | `ui/src/Dropdown.tsx` | 🔨 Rework | Real uses Headless UI, square-experience is custom |
 | Input | 45% | `ui/src/Input.tsx` | 🔨 Rework | Real has 5 sizes, icon support, icon positioning, SearchInput, PasswordInput, TextArea |
-| Popover | 40% | `ui/src/Popover.tsx` | 🔨 Rework | Real is hook-based (usePopover), spaceui is compositional Radix |
-| Loader | 40% | `ui/src/Loader.tsx` | 🔨 Rework | Real uses react-loading-icons Puff, spaceui is custom spinner |
+| Popover | 40% | `ui/src/Popover.tsx` | 🔨 Rework | Real is hook-based (usePopover), square-experience is compositional Radix |
+| Loader | 40% | `ui/src/Loader.tsx` | 🔨 Rework | Real uses react-loading-icons Puff, square-experience is custom spinner |
 
 ### Bad — Rebuild from scratch using real source
 
@@ -64,7 +64,7 @@ Use this to track migration progress as components are faithfully rebuilt from t
 
 ---
 
-## Explorer (`@spaceui/explorer`)
+## Explorer (`@square-experience/explorer`)
 
 ### Done — faithful to real Spacedrive
 
@@ -90,7 +90,7 @@ Use this to track migration progress as components are faithfully rebuilt from t
 
 ---
 
-## AI (`@spaceui/ai`)
+## AI (`@square-experience/ai`)
 
 Not audited yet. These components were extracted from the Spacebot interface and may be more accurate since they were built recently. Audit when ready to integrate.
 
@@ -130,7 +130,7 @@ Not audited yet. These components were extracted from the Spacebot interface and
 - [ ] FileRow — table integration, drag-drop, inline rename
 - [ ] PathBar — animated modes, editable paths, SdPath
 - [ ] Inspector — polymorphic variant system
-- [ ] QuickPreview — decide: modal vs window approach for spaceui
+- [ ] QuickPreview — decide: modal vs window approach for square-experience
 - [ ] DragOverlay — polymorphic preview types
 - [ ] Delete InspectorPanel
 

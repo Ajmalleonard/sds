@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Button } from '@spaceui/primitives';
+import { Button } from '@square-experience/primitives';
 
 const meta = {
   title: 'Primitives/Button',

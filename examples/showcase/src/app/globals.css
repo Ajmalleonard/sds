@@ -1,0 +1,15 @@
+@import "tailwindcss";
+@import "../../../../packages/tokens/src/css/theme.css";
+
+@source "../../../../packages/primitives/src/**/*.{ts,tsx}";
+@source "../../../../packages/ai/src/**/*.{ts,tsx}";
+@source "../../../../packages/explorer/src/**/*.{ts,tsx}";
+@source "../../../../packages/forms/src/**/*.{ts,tsx}";
+@source "../../../showcase/src/**/*.{ts,tsx}";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+body {
+	@apply bg-app text-ink;
+	font-family: 'Inter', system-ui, sans-serif;
+}

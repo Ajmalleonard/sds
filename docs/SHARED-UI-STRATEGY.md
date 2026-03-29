@@ -1,4 +1,4 @@
-# Shared UI Strategy: `spacedriveapp/spaceui`
+# Shared UI Strategy: `spacedriveapp/square-experience`
 
 ## The Problem
 
@@ -15,26 +15,26 @@ The token names are nearly identical because spacebot's were derived from Spaced
 
 ---
 
-## The Proposal: `spacedriveapp/spaceui`
+## The Proposal: `spacedriveapp/square-experience`
 
-A standalone repo — `spacedriveapp/spaceui` — that owns the entire shared design system. Both Spacedrive and the Spacebot portal become pure consumers. No UI primitives or shared composites live in either app repo.
+A standalone repo — `spacedriveapp/square-experience` — that owns the entire shared design system. Both Spacedrive and the Spacebot portal become pure consumers. No UI primitives or shared composites live in either app repo.
 
 ### Why a Separate Repo
 
-1. **Clean dependency direction.** Both apps depend on spaceui. Neither depends on the other. No circular references, no "which repo do I put this in" decisions.
+1. **Clean dependency direction.** Both apps depend on square-experience. Neither depends on the other. No circular references, no "which repo do I put this in" decisions.
 2. **Independent release cycle.** UI changes can be versioned, published, and adopted at each app's own pace. A breaking change in a primitive doesn't force simultaneous deploys.
 3. **Single design authority.** One place to review, approve, and document the design system. No drift between "the spacebot version" and "the spacedrive version."
 4. **Contributor clarity.** A designer or frontend engineer working on shared components works in one repo, not scattered across three.
-5. **Future consumers.** The marketing site, docs site, mobile app, or any other surface can import from spaceui without pulling in Spacedrive or Spacebot app code.
+5. **Future consumers.** The marketing site, docs site, mobile app, or any other surface can import from square-experience without pulling in Spacedrive or Spacebot app code.
 
 ### Package Structure
 
 The repo publishes multiple packages from a single monorepo. Domain-specific composites live in scoped packages under `packages/` — `ai/` for agent and AI interaction components, `explorer/` for file management components, with room for more as product surfaces grow.
 
 ```
-spacedriveapp/spaceui/
+spacedriveapp/square-experience/
 ├── packages/
-│   ├── primitives/              # @spaceui/primitives
+│   ├── primitives/              # @square-experience/primitives
 │   │   ├── src/
 │   │   │   ├── Button.tsx
 │   │   │   ├── Input.tsx
@@ -68,7 +68,7 @@ spacedriveapp/spaceui/
 │   │   │   └── index.ts
 │   │   └── package.json
 │   │
-│   ├── forms/                   # @spaceui/forms
+│   ├── forms/                   # @square-experience/forms
 │   │   ├── src/
 │   │   │   ├── Form.tsx
 │   │   │   ├── FormField.tsx
@@ -79,9 +79,9 @@ spacedriveapp/spaceui/
 │   │   │   ├── RadioGroupField.tsx
 │   │   │   ├── SwitchField.tsx
 │   │   │   └── index.ts
-│   │   └── package.json         # peer deps: @spaceui/primitives, react-hook-form, zod
+│   │   └── package.json         # peer deps: @square-experience/primitives, react-hook-form, zod
 │   │
-│   ├── ai/                      # @spaceui/ai
+│   ├── ai/                      # @square-experience/ai
 │   │   ├── src/
 │   │   │   ├── ToolCall.tsx
 │   │   │   ├── Markdown.tsx
@@ -99,9 +99,9 @@ spacedriveapp/spaceui/
 │   │   │   ├── AutonomyPanel.tsx
 │   │   │   ├── types.ts
 │   │   │   └── index.ts
-│   │   └── package.json         # peer deps: @spaceui/primitives, @spacebot/api-client
+│   │   └── package.json         # peer deps: @square-experience/primitives, @spacebot/api-client
 │   │
-│   ├── explorer/                # @spaceui/explorer
+│   ├── explorer/                # @square-experience/explorer
 │   │   ├── src/
 │   │   │   ├── FileGrid.tsx
 │   │   │   ├── FileList.tsx
@@ -117,9 +117,9 @@ spacedriveapp/spaceui/
 │   │   │   ├── RenameInput.tsx
 │   │   │   ├── types.ts
 │   │   │   └── index.ts
-│   │   └── package.json         # peer deps: @spaceui/primitives
+│   │   └── package.json         # peer deps: @square-experience/primitives
 │   │
-│   └── tokens/                  # @spaceui/tokens
+│   └── tokens/                  # @square-experience/tokens
 │       ├── src/
 │       │   ├── colors.ts        # semantic color definitions
 │       │   ├── tailwind-preset.ts
@@ -133,13 +133,13 @@ spacedriveapp/spaceui/
 │
 ├── turbo.json                   # or bun workspace config
 ├── tsconfig.base.json
-├── tailwind.config.ts           # base config using @spaceui/tokens
+├── tailwind.config.ts           # base config using @square-experience/tokens
 └── package.json                 # workspace root
 ```
 
 ### Package Responsibilities
 
-#### `@spaceui/tokens`
+#### `@square-experience/tokens`
 
 Design tokens and Tailwind preset. The foundation everything else builds on.
 
@@ -151,11 +151,11 @@ Design tokens and Tailwind preset. The foundation everything else builds on.
 
 Both app `tailwind.config.ts` files use:
 ```ts
-import { spaceUiPreset } from '@spaceui/tokens';
+import { spaceUiPreset } from '@square-experience/tokens';
 export default { presets: [spaceUiPreset], /* app-specific overrides */ };
 ```
 
-#### `@spaceui/primitives`
+#### `@square-experience/primitives`
 
 All interactive building blocks. No business logic. No data fetching. No product-specific concepts.
 
@@ -179,16 +179,16 @@ All interactive building blocks. No business logic. No data fetching. No product
 - Typography — unify Spacedrive's set with spacebot's 6 heading/body variants
 - Shortcut/Kbd — evaluate and keep one
 
-#### `@spaceui/forms`
+#### `@square-experience/forms`
 
-Form field wrappers built on `react-hook-form` + `@spaceui/primitives`. Identical pattern in both apps today — Controller wrapper → Label → Primitive → ErrorMessage.
+Form field wrappers built on `react-hook-form` + `@square-experience/primitives`. Identical pattern in both apps today — Controller wrapper → Label → Primitive → ErrorMessage.
 
 - Form, FormField (base wrapper)
 - InputField, TextAreaField
 - SelectField, CheckboxField, RadioGroupField, SwitchField
 - Peer deps on `react-hook-form` and `zod`
 
-#### `@spaceui/ai`
+#### `@square-experience/ai`
 
 Assembled components for AI agent interaction. These understand agent concepts — tool calls, workers, transcripts, tasks, memories, conversations — but are not tied to any specific agent runtime. Tailored to Spacebot today, generic enough that the component vocabulary applies to any agent surface.
 
@@ -255,7 +255,7 @@ interface AgentInfo { id: string; name: string; detail: string; status?: string;
 interface ModelOption { id: string; name: string; provider: string; context_window?: number; capabilities?: string[]; }
 ```
 
-#### `@spaceui/explorer`
+#### `@square-experience/explorer`
 
 Assembled components for file browsing and management. These understand file system concepts — paths, thumbnails, kinds, tags, metadata, preview — but are not tied to Spacedrive's specific backend. The Spacedrive app wires them to its core queries; any other file-browsing surface could use them with different data sources.
 
@@ -292,7 +292,7 @@ The explorer package starts smaller than ai — many of these components are dee
 
 ## Dependency Strategy
 
-### `@spaceui/primitives` Dependencies
+### `@square-experience/primitives` Dependencies
 
 Direct:
 - `@radix-ui/*` (checkbox, dialog, dropdown-menu, popover, radio-group, select, slider, switch, tabs, tooltip)
@@ -305,13 +305,13 @@ Peer:
 - `react`, `react-dom`
 - `tailwindcss` (build-time)
 
-### `@spaceui/ai` Dependencies
+### `@square-experience/ai` Dependencies
 
 Direct:
 - `react-markdown`, `remark-gfm`, `rehype-raw` (for Markdown)
 
 Peer:
-- `@spaceui/primitives`
+- `@square-experience/primitives`
 - `@spacebot/api-client` (for types)
 - `@tanstack/react-query` (consumers provide)
 - `@tanstack/react-virtual` (consumers provide)
@@ -321,10 +321,10 @@ Optional / lazy-loaded:
 - `@react-sigma/core`, `sigma`, `graphology` (MemoryGraph — code-split)
 - `@dnd-kit/core`, `@dnd-kit/sortable`, `@dnd-kit/utilities` (TaskBoard — code-split)
 
-### `@spaceui/explorer` Dependencies
+### `@square-experience/explorer` Dependencies
 
 Peer:
-- `@spaceui/primitives`
+- `@square-experience/primitives`
 - `@tanstack/react-virtual` (consumers provide)
 - `react`, `react-dom`
 
@@ -366,7 +366,7 @@ App-specific layout, routing, Spacedrive integration, and anything that calls `u
 - Selection management
 - Platform-specific behavior (Tauri commands, native menus)
 
-Spacedrive's `@sd/ui` package **goes away** — its contents migrate to `@spaceui/primitives`. During transition, `@sd/ui` becomes a thin re-export wrapper, then is removed.
+Spacedrive's `@sd/ui` package **goes away** — its contents migrate to `@square-experience/primitives`. During transition, `@sd/ui` becomes a thin re-export wrapper, then is removed.
 
 ### Spacebot Portal `spacebot/interface/src/`
 
@@ -391,33 +391,33 @@ The portal's `/src/ui/` directory **is deleted entirely** once migration is comp
 
 ### Phase 0 — Bootstrap the Repo
 
-1. Create `spacedriveapp/spaceui` repo with monorepo tooling (Turbo or Bun workspaces).
-2. Set up `@spaceui/tokens` with the shared Tailwind preset, extracting color definitions from Spacedrive's current `styles.css` and tailwind config.
-3. Set up `@spaceui/primitives`, `@spaceui/forms`, `@spaceui/ai`, `@spaceui/explorer` as empty packages with build config (tsup or unbuild, Tailwind, TypeScript).
-4. Both app repos add spaceui as a workspace dependency (git submodule, npm link, or published packages — your call on linking strategy).
+1. Create `spacedriveapp/square-experience` repo with monorepo tooling (Turbo or Bun workspaces).
+2. Set up `@square-experience/tokens` with the shared Tailwind preset, extracting color definitions from Spacedrive's current `styles.css` and tailwind config.
+3. Set up `@square-experience/primitives`, `@square-experience/forms`, `@square-experience/ai`, `@square-experience/explorer` as empty packages with build config (tsup or unbuild, Tailwind, TypeScript).
+4. Both app repos add square-experience as a workspace dependency (git submodule, npm link, or published packages — your call on linking strategy).
 
 ### Phase 1 — Stop the Bleeding (week 1)
 
 Move the actively-duplicated components first so no more copy-paste happens:
 
-1. Move `ToolCall.tsx` + `pairTranscriptSteps` + types → `@spaceui/ai`
-2. Move `Markdown.tsx` → `@spaceui/ai`
+1. Move `ToolCall.tsx` + `pairTranscriptSteps` + types → `@square-experience/ai`
+2. Move `Markdown.tsx` → `@square-experience/ai`
 3. Both apps update imports. Delete the duplicates.
 
 ### Phase 2 — Primitives Migration (weeks 2–3)
 
-Move all primitives out of both repos into `@spaceui/primitives`:
+Move all primitives out of both repos into `@square-experience/primitives`:
 
 1. Start with the intersection — components that exist in both @sd/ui and spacebot `/src/ui/` with identical APIs: Button, Input, Checkbox, Switch, Slider, Dialog, Tabs, Tooltip, Popover, Select, RadioGroup, Dropdown, ProgressBar, Loader, Divider.
-2. For each: take the better implementation, move to spaceui, update imports in both apps.
+2. For each: take the better implementation, move to square-experience, update imports in both apps.
 3. Add spacebot-only primitives that are genuinely reusable: Badge, Card, NumberStepper, FilterButton, ToggleGroup.
 4. Merge divergent implementations: Banner/InfoBanner, Typography, Shortcut/Kbd.
-5. Move form fields → `@spaceui/forms`.
-6. Spacedrive's `@sd/ui` becomes a thin `index.ts` that re-exports from `@spaceui/primitives` (backwards compat shim).
+5. Move form fields → `@square-experience/forms`.
+6. Spacedrive's `@sd/ui` becomes a thin `index.ts` that re-exports from `@square-experience/primitives` (backwards compat shim).
 
 ### Phase 3 — AI Composite Extraction (weeks 3–5)
 
-Extract shared AI composites into `@spaceui/ai`:
+Extract shared AI composites into `@square-experience/ai`:
 
 1. `InlineWorkerCard` — extract from Spacedrive, parameterize the API calls (accept data via props, not internal fetching).
 2. `ChatComposer` — extract from Spacedrive, make project/model selectors pluggable.
@@ -428,7 +428,7 @@ Extract shared AI composites into `@spaceui/ai`:
 
 ### Phase 4 — New Shared Components (aligned with VISION)
 
-Build new components directly in `@spaceui/ai`:
+Build new components directly in `@square-experience/ai`:
 
 1. `TaskBoard` + `TaskCard` — refactor from portal's version, serve VISION Phase 2.
 2. `MemoryGraph` + `MemoryList` — refactor from portal's MemoryGraph, add list view, serve VISION Phase 3.
@@ -437,7 +437,7 @@ Build new components directly in `@spaceui/ai`:
 
 ### Phase 5 — Explorer Extraction (parallel track)
 
-Extract file management components into `@spaceui/explorer` incrementally:
+Extract file management components into `@square-experience/explorer` incrementally:
 
 1. Start with self-contained pieces: TagPill, KindIcon, FileThumb, PathBar.
 2. Then stateful but bounded: RenameInput, DragOverlay, InspectorPanel.
@@ -447,7 +447,7 @@ Extract file management components into `@spaceui/explorer` incrementally:
 ### Phase 6 — Cleanup
 
 1. Delete spacebot portal's `/src/ui/` entirely.
-2. Remove Spacedrive's `@sd/ui` re-export shim (update all imports to `@spaceui/primitives`).
+2. Remove Spacedrive's `@sd/ui` re-export shim (update all imports to `@square-experience/primitives`).
 3. Audit both apps for any remaining duplicated UI code.
 4. Portal's `/src/components/` should only contain portal-specific components (channels, cortex, orchestration, admin).
 
@@ -455,7 +455,7 @@ Extract file management components into `@spaceui/explorer` incrementally:
 
 ## Linking Strategy Options
 
-How both app repos consume spaceui:
+How both app repos consume square-experience:
 
 | Approach | Pros | Cons |
 |----------|------|------|
@@ -464,17 +464,17 @@ How both app repos consume spaceui:
 | **Bun/npm workspace link** | Zero friction during dev, instant feedback | Only works locally, CI needs a different strategy |
 | **Hybrid: workspace link for dev, publish for CI/prod** | Best of both | Slightly more config |
 
-Recommendation: **Hybrid.** During active development, both repos use workspace linking to spaceui (or a shared parent workspace). For CI and production builds, spaceui publishes to a private npm registry (or GitHub Packages). This gives instant local iteration without publish friction, and reproducible CI builds with pinned versions.
+Recommendation: **Hybrid.** During active development, both repos use workspace linking to square-experience (or a shared parent workspace). For CI and production builds, square-experience publishes to a private npm registry (or GitHub Packages). This gives instant local iteration without publish friction, and reproducible CI builds with pinned versions.
 
 ---
 
-## Component Design Principles for spaceui
+## Component Design Principles for square-experience
 
 ### Primitives
 
 - **No business logic.** A Button doesn't know about agents or files.
 - **Styling via className + CVA variants.** Consumers can override or extend.
-- **Semantic color classes only.** All components use `@spaceui/tokens` colors. No hardcoded hex, no `var()` references in className.
+- **Semantic color classes only.** All components use `@square-experience/tokens` colors. No hardcoded hex, no `var()` references in className.
 - **Radix for accessibility.** Every interactive primitive wraps a Radix component.
 - **Composable over configurable.** Card has Card.Header, Card.Content, Card.Footer — not a single Card with 15 props.
 
@@ -504,7 +504,7 @@ Recommendation: **Hybrid.** During active development, both repos use workspace 
 
 ## Audit: Full Component Inventory
 
-### Primitives — Final Merged Set for `@spaceui/primitives`
+### Primitives — Final Merged Set for `@square-experience/primitives`
 
 | Component | Source | Notes |
 |-----------|--------|-------|
@@ -541,7 +541,7 @@ Recommendation: **Hybrid.** During active development, both repos use workspace 
 | TopBarButtonGroup | @sd/ui | Keep |
 | Icon | @sd/ui | Keep |
 
-### AI Composites — Full Set for `@spaceui/ai`
+### AI Composites — Full Set for `@square-experience/ai`
 
 | Component | Source | Priority |
 |-----------|--------|----------|
@@ -560,7 +560,7 @@ Recommendation: **Hybrid.** During active development, both repos use workspace 
 | CronJobList | New | Phase 4 (VISION P3) |
 | AutonomyPanel | New | Phase 4 (VISION P4) |
 
-### Explorer Composites — Initial Set for `@spaceui/explorer`
+### Explorer Composites — Initial Set for `@square-experience/explorer`
 
 | Component | Source | Priority |
 |-----------|--------|----------|

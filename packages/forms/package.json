@@ -1,7 +1,7 @@
 {
-  "name": "@spaceui/forms",
+  "name": "@square-experience/forms",
   "version": "0.0.1",
-  "description": "Form field wrappers for SpaceUI built on react-hook-form",
+  "description": "Form field wrappers for Square Experience built on react-hook-form",
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
@@ -22,7 +22,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@spaceui/primitives": "^0.0.1",
+    "@square-experience/primitives": "^0.0.1",
     "clsx": "^2.1.0"
   },
   "devDependencies": {

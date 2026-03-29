@@ -1,44 +1,40 @@
 import type { Preview } from '@storybook/react';
-import { themes } from '@storybook/theming';
-
-import '../packages/tokens/src/css/theme.css';
-import '../packages/tokens/src/css/base.css';
+import '@square-experience/tokens/theme';
+import '@square-experience/tokens/css';
+import '@square-experience/tokens/css/themes/dark';
+import './storybook.css';
 
 const preview: Preview = {
   parameters: {
-    actions: { argTypesRegex: '^on[A-Z].*' },
     controls: {
       matchers: {
         color: /(background|color)$/i,
         date: /Date$/i,
       },
     },
-    docs: {
-      theme: themes.dark,
-    },
     backgrounds: {
       default: 'dark',
       values: [
-        {
-          name: 'dark',
-          value: '#0f0f13',
-        },
-        {
-          name: 'light',
-          value: '#fafafa',
-        },
+        { name: 'dark', value: '#0f0f13' },
+        { name: 'light', value: '#fafafa' },
       ],
     },
   },
   globalTypes: {
     theme: {
-      description: 'Global theme for components',
+      description: 'Theme',
       defaultValue: 'dark',
       toolbar: {
         title: 'Theme',
+        icon: 'paintbrush',
         items: [
-          { value: 'dark', icon: 'moon', title: 'Dark' },
-          { value: 'light', icon: 'sun', title: 'Light' },
+          { value: 'dark', title: 'Dark' },
+          { value: 'light', title: 'Light' },
+          { value: 'midnight', title: 'Midnight' },
+          { value: 'noir', title: 'Noir' },
+          { value: 'nord', title: 'Nord' },
+          { value: 'slate', title: 'Slate' },
+          { value: 'mocha', title: 'Mocha' },
         ],
         dynamicTitle: true,
       },
@@ -47,7 +43,9 @@ const preview: Preview = {
   decorators: [
     (Story, context) => {
       const theme = context.globals.theme || 'dark';
-      document.documentElement.classList.remove('dark', 'light');
+      document.documentElement.classList.remove(
+        'dark', 'light', 'midnight', 'noir', 'nord', 'slate', 'mocha'
+      );
       document.documentElement.classList.add(theme);
       return Story();
     },

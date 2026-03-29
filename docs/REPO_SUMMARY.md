@@ -1,4 +1,4 @@
-# SpaceUI Repository Summary
+# Square Experience Repository Summary
 
 ## Overview
 
@@ -13,27 +13,27 @@ A complete monorepo with 5 packages, 100+ components, CI/CD, documentation, and 
 
 ## Package Structure
 
-### @spaceui/tokens
+### @square-experience/tokens
 - **Components**: Design tokens, Tailwind preset, CSS themes
 - **Files**: 8
 - **Key Exports**: `spaceUiPreset`, `colors`, CSS themes
 
-### @spaceui/primitives  
+### @square-experience/primitives  
 - **Components**: 41 base UI components
 - **Files**: 34
 - **Key Exports**: Button, Card, Dialog, Input, Select, Tabs, etc.
 
-### @spaceui/forms
+### @square-experience/forms
 - **Components**: 8 form field wrappers
 - **Files**: 10
 - **Key Exports**: InputField, SelectField, CheckboxField, etc.
 
-### @spaceui/ai
+### @square-experience/ai
 - **Components**: 18 AI/agent components
 - **Files**: 21
 - **Key Exports**: ToolCall, ChatComposer, TaskBoard, MemoryGraph, etc.
 
-### @spaceui/explorer
+### @square-experience/explorer
 - **Components**: 14 file management components
 - **Files**: 17
 - **Key Exports**: FileGrid, PathBar, Inspector, KindIcon, etc.

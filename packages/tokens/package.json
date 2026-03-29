@@ -1,18 +1,45 @@
 {
-	"name": "@spaceui/tokens",
+	"name": "@square-experience/tokens",
 	"version": "0.0.1",
-	"description": "Design tokens for SpaceUI - Pure CSS for Tailwind v4",
+	"description": "Design tokens for Square Experience - Pure CSS for Tailwind v4",
 	"type": "module",
 	"exports": {
-		"./theme": "./src/css/theme.css",
-		"./css": "./src/css/base.css",
-		"./css/themes/dark": "./src/css/themes/dark.css",
-		"./css/themes/light": "./src/css/themes/light.css",
-		"./css/themes/midnight": "./src/css/themes/midnight.css",
-		"./css/themes/noir": "./src/css/themes/noir.css",
-		"./css/themes/slate": "./src/css/themes/slate.css",
-		"./css/themes/nord": "./src/css/themes/nord.css",
-		"./css/themes/mocha": "./src/css/themes/mocha.css",
+		"./theme": {
+			"style": "./src/css/theme.css",
+			"default": "./src/css/theme.css"
+		},
+		"./css": {
+			"style": "./src/css/base.css",
+			"default": "./src/css/base.css"
+		},
+		"./css/themes/dark": {
+			"style": "./src/css/themes/dark.css",
+			"default": "./src/css/themes/dark.css"
+		},
+		"./css/themes/light": {
+			"style": "./src/css/themes/light.css",
+			"default": "./src/css/themes/light.css"
+		},
+		"./css/themes/midnight": {
+			"style": "./src/css/themes/midnight.css",
+			"default": "./src/css/themes/midnight.css"
+		},
+		"./css/themes/noir": {
+			"style": "./src/css/themes/noir.css",
+			"default": "./src/css/themes/noir.css"
+		},
+		"./css/themes/slate": {
+			"style": "./src/css/themes/slate.css",
+			"default": "./src/css/themes/slate.css"
+		},
+		"./css/themes/nord": {
+			"style": "./src/css/themes/nord.css",
+			"default": "./src/css/themes/nord.css"
+		},
+		"./css/themes/mocha": {
+			"style": "./src/css/themes/mocha.css",
+			"default": "./src/css/themes/mocha.css"
+		},
 		"./raw-colors": {
 			"import": "./raw-colors.cjs",
 			"require": "./raw-colors.cjs"

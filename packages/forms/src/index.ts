@@ -1,4 +1,4 @@
-// @spaceui/forms - Form field wrappers built on react-hook-form
+// @square-experience/forms - Form field wrappers built on react-hook-form
 
 export {
   useFormField,

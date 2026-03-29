@@ -1,21 +1,21 @@
-# SpaceUI
+# Square Experience
 
 A shared design system for Spacedrive and Spacebot applications.
 
 ## Overview
 
-SpaceUI is a standalone repository that houses all shared UI components, design tokens, and styling utilities for the Spacedrive ecosystem. It enables consistent design across multiple applications while maintaining clean dependency boundaries.
+Square Experience is a standalone repository that houses all shared UI components, design tokens, and styling utilities for the Spacedrive ecosystem. It enables consistent design across multiple applications while maintaining clean dependency boundaries.
 
 ## Package Structure
 
 ```
-spaceui/
+square-experience/
 ├── packages/
-│   ├── tokens/         # @spaceui/tokens - Design tokens & Tailwind preset
-│   ├── primitives/     # @spaceui/primitives - Base UI components (40+)
-│   ├── forms/          # @spaceui/forms - react-hook-form wrappers
-│   ├── ai/             # @spaceui/ai - AI agent components (18)
-│   └── explorer/       # @spaceui/explorer - File management (14)
+│   ├── tokens/         # @square-experience/tokens - Design tokens & Tailwind preset
+│   ├── primitives/     # @square-experience/primitives - Base UI components (40+)
+│   ├── forms/          # @square-experience/forms - react-hook-form wrappers
+│   ├── ai/             # @square-experience/ai - AI agent components (18)
+│   └── explorer/       # @square-experience/explorer - File management (14)
 ├── examples/
 │   └── showcase/       # Interactive demo app
 ├── .storybook/         # Component documentation
@@ -28,8 +28,8 @@ spaceui/
 
 ```bash
 # Clone the repository
-git clone https://github.com/spacedriveapp/spaceui.git
-cd spaceui
+git clone https://github.com/spacedriveapp/square-experience.git
+cd square-experience
 
 # Install dependencies
 bun install
@@ -68,38 +68,38 @@ bun run link
 
 # Then in consuming app:
 cd /path/to/spacedrive
-bun link @spaceui/primitives @spaceui/tokens
+bun link @square-experience/primitives @square-experience/tokens
 
 # When done, unlink:
 bun run unlink
 ```
 
-## Using SpaceUI
+## Using Square Experience
 
 ### In a Spacedrive/Spacebot Application
 
 ```typescript
 // Import tokens and preset
-import { spaceUiPreset, colors } from '@spaceui/tokens';
+import { spaceUiPreset, colors } from '@square-experience/tokens';
 
 // Import primitives
-import { Button, Card, Dialog } from '@spaceui/primitives';
+import { Button, Card, Dialog } from '@square-experience/primitives';
 
 // Import form fields
-import { InputField, SelectField } from '@spaceui/forms';
+import { InputField, SelectField } from '@square-experience/forms';
 
 // Import AI components
-import { ToolCall, ChatComposer, Markdown } from '@spaceui/ai';
+import { ToolCall, ChatComposer, Markdown } from '@square-experience/ai';
 
 // Import explorer components
-import { FileGrid, PathBar, Inspector } from '@spaceui/explorer';
+import { FileGrid, PathBar, Inspector } from '@square-experience/explorer';
 ```
 
 ### Tailwind Configuration
 
 ```typescript
 // tailwind.config.ts
-import { spaceUiPreset } from '@spaceui/tokens';
+import { spaceUiPreset } from '@square-experience/tokens';
 
 export default {
   presets: [spaceUiPreset],
@@ -112,12 +112,12 @@ export default {
 
 ```css
 /* In your app's base CSS */
-@import '@spaceui/tokens/css';
+@import '@square-experience/tokens/css';
 ```
 
 ## Packages
 
-### @spaceui/tokens
+### @square-experience/tokens
 
 Design tokens and Tailwind preset. The foundation everything else builds on.
 
@@ -128,7 +128,7 @@ Design tokens and Tailwind preset. The foundation everything else builds on.
 
 [Read more →](./packages/tokens/README.md)
 
-### @spaceui/primitives
+### @square-experience/primitives
 
 Base UI components built on Radix UI primitives.
 
@@ -143,7 +143,7 @@ Base UI components built on Radix UI primitives.
 
 [Read more →](./packages/primitives/README.md)
 
-### @spaceui/forms
+### @square-experience/forms
 
 Form field wrappers built on react-hook-form.
 
@@ -153,7 +153,7 @@ Form field wrappers built on react-hook-form.
 
 [Read more →](./packages/forms/README.md)
 
-### @spaceui/ai
+### @square-experience/ai
 
 AI agent interaction components.
 
@@ -173,7 +173,7 @@ AI agent interaction components.
 
 [Read more →](./packages/ai/README.md)
 
-### @spaceui/explorer
+### @square-experience/explorer
 
 File management and explorer components.
 
@@ -220,12 +220,12 @@ bun run dev
 For local development with linked packages:
 
 ```bash
-# In spaceui repo
+# In square-experience repo
 bun run link
 
 # In consuming app
 cd spacedrive/apps/web
-bun link @spaceui/primitives
+bun link @square-experience/primitives
 ```
 
 ### Creating a Changeset

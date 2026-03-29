@@ -1,4 +1,4 @@
-// @spaceui/explorer — small, reusable explorer primitives
+// @square-experience/explorer — small, reusable explorer primitives
 //
 // Large feature components (Inspector, QuickPreview, PathBar, DragOverlay,
 // FileGrid, FileList, FileThumb, KindIcon) belong in @sd/interface,

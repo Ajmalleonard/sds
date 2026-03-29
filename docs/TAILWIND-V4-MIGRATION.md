@@ -2,7 +2,7 @@
 
 Migration spec for upgrading the entire Spacedrive stack from Tailwind CSS v3 to v4.
 
-**Scope:** spaceui, spacedrive (app), spacedrive-web (marketing site)
+**Scope:** square-experience, spacedrive (app), spacedrive-web (marketing site)
 
 ---
 
@@ -113,7 +113,7 @@ v4 auto-detects files to scan (excludes `.gitignore`-d files, `node_modules`, bi
 To add sources (e.g., node_modules packages):
 
 ```css
-@source "../node_modules/@spaceui/primitives";
+@source "../node_modules/@square-experience/primitives";
 ```
 
 ### 8. Plugins
@@ -181,7 +181,7 @@ These are removed — use opacity modifiers instead:
 
 ## Migration Strategy
 
-We're going **CSS-first** — the v4 native approach. No `@config` compatibility shim. The spaceui token system becomes a CSS file that consumers import. The JS preset (`tailwind-preset.ts`, `spacedrive-tailwind.cjs`) gets replaced.
+We're going **CSS-first** — the v4 native approach. No `@config` compatibility shim. The square-experience token system becomes a CSS file that consumers import. The JS preset (`tailwind-preset.ts`, `spacedrive-tailwind.cjs`) gets replaced.
 
 ### Why CSS-First
 
@@ -192,7 +192,7 @@ We're going **CSS-first** — the v4 native approach. No `@config` compatibility
 
 ---
 
-## Part 1: spaceui Migration
+## Part 1: square-experience Migration
 
 ### 1.1 Convert Token System to CSS-First
 
@@ -343,13 +343,13 @@ The `:root` variables are no longer needed because `@theme` in `theme.css` handl
 
 ### 1.4 Consumer Pattern
 
-Any app consuming spaceui tokens does this in their main CSS:
+Any app consuming square-experience tokens does this in their main CSS:
 
 ```css
 @import "tailwindcss";
-@import "@spaceui/tokens/theme";       /* @theme block — generates utilities */
-@import "@spaceui/tokens/css";         /* base + default theme variables */
-@import "@spaceui/tokens/css/themes/midnight";  /* optional theme override */
+@import "@square-experience/tokens/theme";       /* @theme block — generates utilities */
+@import "@square-experience/tokens/css";         /* base + default theme variables */
+@import "@square-experience/tokens/css/themes/midnight";  /* optional theme override */
 
 @custom-variant dark (&:where(.dark, .dark *));
 ```
@@ -411,8 +411,8 @@ viteFinal: async (config) => {
 **`examples/showcase/src/index.css`:**
 ```css
 @import "tailwindcss";
-@import "@spaceui/tokens/theme";
-@import "@spaceui/tokens/css";
+@import "@square-experience/tokens/theme";
+@import "@square-experience/tokens/css";
 
 @custom-variant dark (&:where(.dark, .dark *));
 ```
@@ -448,7 +448,7 @@ Check each plugin's v4 compatibility:
 - `tailwindcss-animate` — likely compatible, test
 - `tailwindcss-radix` — check compatibility, test
 
-**Note:** None of these plugins were actually loaded in the current preset (the `plugins: []` array is empty in `tailwind-preset.ts`). They're only loaded in `spacedrive-tailwind.cjs` for the spacedrive app. So for spaceui itself, no plugin changes are needed.
+**Note:** None of these plugins were actually loaded in the current preset (the `plugins: []` array is empty in `tailwind-preset.ts`). They're only loaded in `spacedrive-tailwind.cjs` for the spacedrive app. So for square-experience itself, no plugin changes are needed.
 
 ---
 
@@ -467,14 +467,14 @@ The SCSS file uses:
 **Converted `style.css`:**
 ```css
 @import "tailwindcss";
-@import "@spaceui/tokens/theme";
-@import "@spaceui/tokens/css";
-@import "@spaceui/tokens/css/themes/light";
-@import "@spaceui/tokens/css/themes/midnight";
-@import "@spaceui/tokens/css/themes/noir";
-@import "@spaceui/tokens/css/themes/slate";
-@import "@spaceui/tokens/css/themes/nord";
-@import "@spaceui/tokens/css/themes/mocha";
+@import "@square-experience/tokens/theme";
+@import "@square-experience/tokens/css";
+@import "@square-experience/tokens/css/themes/light";
+@import "@square-experience/tokens/css/themes/midnight";
+@import "@square-experience/tokens/css/themes/noir";
+@import "@square-experience/tokens/css/themes/slate";
+@import "@square-experience/tokens/css/themes/nord";
+@import "@square-experience/tokens/css/themes/mocha";
 
 @plugin "@tailwindcss/forms";
 @plugin "tailwindcss-animate";
@@ -511,7 +511,7 @@ The CSS file handles everything now.
 
 ### 2.3 Replace spacedrive-tailwind.cjs
 
-**Delete:** `spaceui/packages/tokens/spacedrive-tailwind.cjs`
+**Delete:** `square-experience/packages/tokens/spacedrive-tailwind.cjs`
 
 This was the factory function that generated platform-specific Tailwind configs. It's no longer needed. All configuration is in CSS.
 
@@ -555,15 +555,15 @@ Remove PostCSS config file — the Vite plugin handles it.
 - Add: `tailwindcss: ^4.1.0`, `@tailwindcss/vite: ^4.1.0`
 - Update plugins to v4-compatible versions
 
-### 2.6 Add @source for spaceui Components
+### 2.6 Add @source for square-experience Components
 
-Since spaceui components live in `node_modules`, v4's auto-detection won't scan them. Add `@source` directives:
+Since square-experience components live in `node_modules`, v4's auto-detection won't scan them. Add `@source` directives:
 
 ```css
-@source "../node_modules/@spaceui/primitives/src";
-@source "../node_modules/@spaceui/ai/src";
-@source "../node_modules/@spaceui/explorer/src";
-@source "../node_modules/@spaceui/forms/src";
+@source "../node_modules/@square-experience/primitives/src";
+@source "../node_modules/@square-experience/ai/src";
+@source "../node_modules/@square-experience/explorer/src";
+@source "../node_modules/@square-experience/forms/src";
 ```
 
 ### 2.7 Mobile App (React Native + NativeWind)
@@ -587,9 +587,9 @@ The marketing site already uses `@import "tailwindcss"`, `@tailwindcss/postcss`,
 @import "@fontsource/space-grotesk/500.css";
 @import "@fontsource/space-grotesk/600.css";
 @import "@fontsource/space-grotesk/700.css";
-@import "@spaceui/tokens/theme";
-@import "@spaceui/tokens/css";
-@import "@spaceui/tokens/css/themes/midnight";
+@import "@square-experience/tokens/theme";
+@import "@square-experience/tokens/css";
+@import "@square-experience/tokens/css/themes/midnight";
 
 @theme {
   --font-sans: "Space Grotesk", system-ui, sans-serif;
@@ -603,10 +603,10 @@ The marketing site already uses `@import "tailwindcss"`, `@tailwindcss/postcss`,
 - Delete `tailwind.config.ts` (if it exists — it was created during the v3 attempt)
 - Keep `postcss.config.mjs` with `@tailwindcss/postcss`
 
-### 3.4 Add @source for spaceui
+### 3.4 Add @source for square-experience
 
 ```css
-@source "../node_modules/@spaceui/primitives/src";
+@source "../node_modules/@square-experience/primitives/src";
 ```
 
 ---
@@ -632,8 +632,8 @@ Run these across the entire codebase (all three projects):
 
 ## Execution Order
 
-1. **spaceui tokens** — convert color system to CSS-first (`theme.css`), convert theme files to full `hsl()` values, update exports
-2. **spaceui packages** — update dependency versions, test storybook
+1. **square-experience tokens** — convert color system to CSS-first (`theme.css`), convert theme files to full `hsl()` values, update exports
+2. **square-experience packages** — update dependency versions, test storybook
 3. **spacedrive-web** — wire up new token imports, verify borders work
 4. **spacedrive app** — convert SCSS to CSS, delete JS configs, add Vite plugin, test
 5. **spacedrive mobile** — evaluate NativeWind v4 support, migrate if possible, defer if not
@@ -660,7 +660,7 @@ After migration, verify in each project:
 
 ## Files Changed Summary
 
-### spaceui
+### square-experience
 
 | Action | File |
 |---|---|

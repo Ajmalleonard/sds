@@ -1,6 +1,6 @@
-# Contributing to SpaceUI
+# Contributing to Square Experience
 
-Thank you for your interest in contributing to SpaceUI! This guide will help you get started.
+Thank you for your interest in contributing to Square Experience! This guide will help you get started.
 
 ## Development Setup
 
@@ -14,8 +14,8 @@ Thank you for your interest in contributing to SpaceUI! This guide will help you
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/spacedriveapp/spaceui.git
-   cd spaceui
+   git clone https://github.com/spacedriveapp/square-experience.git
+   cd square-experience
    ```
 
 2. **Install dependencies**
@@ -37,7 +37,7 @@ Thank you for your interest in contributing to SpaceUI! This guide will help you
 ## Project Structure
 
 ```
-spaceui/
+square-experience/
 ├── packages/
 │   ├── tokens/         # Design tokens & Tailwind preset
 │   ├── primitives/     # Base UI components
@@ -54,10 +54,10 @@ spaceui/
 ### Adding a New Component
 
 1. **Choose the right package**
-   - `@spaceui/primitives` - Base building blocks (buttons, inputs)
-   - `@spaceui/forms` - Form field wrappers
-   - `@spaceui/ai` - Agent/AI components
-   - `@spaceui/explorer` - File management components
+   - `@square-experience/primitives` - Base building blocks (buttons, inputs)
+   - `@square-experience/forms` - Form field wrappers
+   - `@square-experience/ai` - Agent/AI components
+   - `@square-experience/explorer` - File management components
 
 2. **Create the component file**
    ```typescript
@@ -127,7 +127,7 @@ spaceui/
    bun link
    
    # In consuming app
-   bun link @spaceui/primitives
+   bun link @square-experience/primitives
    ```
 
 ## Making Changes

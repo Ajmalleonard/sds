@@ -1,4 +1,4 @@
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@spaceui/primitives';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@square-experience/primitives';
 import { FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from './Form';
 
 export interface SelectOption {

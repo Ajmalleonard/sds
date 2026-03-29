@@ -9,11 +9,12 @@ import {
 	OptionList,
 	OptionListItem,
 	type SelectPillProps,
-} from "@spaceui/primitives";
+} from "@square-experience/primitives";
 import clsx from "clsx";
 import {forwardRef, useMemo, useState} from "react";
+import type { ModelOption } from ".";
 
-import type {ModelOption} from "./types";
+
 
 export interface ModelSelectorProps {
 	/** Available models */
@@ -111,7 +112,7 @@ export const ModelSelector = forwardRef<HTMLButtonElement, ModelSelectorProps>(
 
 					{/* Grouped results */}
 					<div className="max-h-[280px] overflow-y-auto">
-						{Object.entries(grouped).map(([provider, providerModels]) => (
+						{(Object.entries(grouped) as [string, ModelOption[]][]).map(([provider, providerModels]) => (
 							<div key={provider}>
 								<div className="px-3 py-1 text-[10px] font-semibold uppercase tracking-wider text-ink-faint">
 									{provider}

@@ -1,4 +1,4 @@
-import { RadioGroup, RadioGroupItem } from '@spaceui/primitives';
+import { RadioGroup, RadioGroupItem } from '@square-experience/primitives';
 import { FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from './Form';
 
 export interface RadioOption {

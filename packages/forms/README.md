@@ -1,13 +1,13 @@
-# @spaceui/forms
+# @square-experience/forms
 
-Form field wrappers built on react-hook-form for SpaceUI.
+Form field wrappers built on react-hook-form for Square Experience.
 
 ## Installation
 
 ```bash
-bun add @spaceui/forms @spaceui/primitives react-hook-form zod
+bun add @square-experience/forms @square-experience/primitives react-hook-form zod
 # or
-npm install @spaceui/forms @spaceui/primitives react-hook-form zod
+npm install @square-experience/forms @square-experience/primitives react-hook-form zod
 ```
 
 Peer dependencies:
@@ -24,7 +24,7 @@ Peer dependencies:
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
-import { Form, InputField, SelectField, CheckboxField } from '@spaceui/forms';
+import { Form, InputField, SelectField, CheckboxField } from '@square-experience/forms';
 
 const schema = z.object({
   name: z.string().min(2, 'Name must be at least 2 characters'),
@@ -238,7 +238,7 @@ function DynamicForm() {
 ### Manual Error Display
 
 ```tsx
-import { FormMessage } from '@spaceui/forms';
+import { FormMessage } from '@square-experience/forms';
 
 // Inside a custom component
 <FormMessage>
@@ -248,14 +248,14 @@ import { FormMessage } from '@spaceui/forms';
 
 ## Styling
 
-Form fields automatically use SpaceUI's semantic colors:
+Form fields automatically use Square Experience's semantic colors:
 
 - Labels: `text-ink`
 - Descriptions: `text-ink-dull`
 - Errors: `text-status-error`
 - Inputs: `border-app-line bg-app-box`
 
-No additional styling needed - works out of the box with your Tailwind + SpaceUI setup.
+No additional styling needed - works out of the box with your Tailwind + Square Experience setup.
 
 ## API Reference
 

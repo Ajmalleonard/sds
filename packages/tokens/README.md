@@ -1,13 +1,13 @@
-# @spaceui/tokens
+# @square-experience/tokens
 
-Design tokens and Tailwind CSS preset for the SpaceUI design system.
+Design tokens and Tailwind CSS preset for the Square Experience design system.
 
 ## Installation
 
 ```bash
-bun add @spaceui/tokens
+bun add @square-experience/tokens
 # or
-npm install @spaceui/tokens
+npm install @square-experience/tokens
 ```
 
 ## Usage
@@ -16,7 +16,7 @@ npm install @spaceui/tokens
 
 ```typescript
 // tailwind.config.ts
-import { spaceUiPreset } from '@spaceui/tokens';
+import { spaceUiPreset } from '@square-experience/tokens';
 
 export default {
   presets: [spaceUiPreset],
@@ -28,13 +28,13 @@ export default {
 
 ```css
 /* In your base CSS file */
-@import '@spaceui/tokens/css';
+@import '@square-experience/tokens/css';
 ```
 
 ### Programmatic Access
 
 ```typescript
-import { colors, spaceUiPreset } from '@spaceui/tokens';
+import { colors, spaceUiPreset } from '@square-experience/tokens';
 
 // Access color values
 console.log(colors.accent.DEFAULT); // "200, 100%, 60%"
@@ -118,13 +118,13 @@ Works with Tailwind's opacity syntax:
 ### Dark Theme (Default)
 
 ```css
-@import '@spaceui/tokens/css/themes/dark';
+@import '@square-experience/tokens/css/themes/dark';
 ```
 
 ### Light Theme
 
 ```css
-@import '@spaceui/tokens/css/themes/light';
+@import '@square-experience/tokens/css/themes/light';
 ```
 
 Or toggle via class:

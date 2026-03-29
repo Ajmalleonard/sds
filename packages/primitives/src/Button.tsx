@@ -15,10 +15,7 @@ export type LinkButtonProps = ButtonBaseProps &
 		href?: string;
 	};
 
-type Button = {
-	(props: ButtonProps): JSX.Element;
-	(props: LinkButtonProps): JSX.Element;
-};
+
 
 const hasHref = (
 	props: ButtonProps | LinkButtonProps,

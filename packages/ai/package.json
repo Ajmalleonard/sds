@@ -1,7 +1,7 @@
 {
-  "name": "@spaceui/ai",
+  "name": "@square-experience/ai",
   "version": "0.0.1",
-  "description": "AI agent interaction components for SpaceUI",
+  "description": "AI agent interaction components for Square Experience",
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
@@ -22,7 +22,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@spaceui/primitives": "^0.0.1",
+    "@square-experience/primitives": "^0.0.1",
     "@phosphor-icons/react": "^2.1.0",
     "react-markdown": "^9.0.0",
     "remark-gfm": "^4.0.0",

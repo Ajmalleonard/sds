@@ -1,4 +1,4 @@
-// @spaceui/ai - AI agent interaction components
+// @square-experience/ai - AI agent interaction components
 
 // Types
 export type {
