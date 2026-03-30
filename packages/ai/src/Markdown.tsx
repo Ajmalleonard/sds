@@ -4,7 +4,7 @@ import rehypeRaw from 'rehype-raw';
 import { clsx } from 'clsx';
 import { forwardRef } from 'react';
 
-interface MarkdownProps {
+export interface MarkdownProps {
   content: string;
   className?: string;
 }

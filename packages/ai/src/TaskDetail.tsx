@@ -168,7 +168,7 @@ export function TaskDetail({
 				<div className="flex flex-wrap gap-2">
 					{onStatusChange && task.status === "pending_approval" && (
 						<Button
-							variant="accent"
+							variant="default"
 							size="sm"
 							onClick={() => onStatusChange(task, "ready")}
 						>
@@ -177,7 +177,7 @@ export function TaskDetail({
 					)}
 					{onStatusChange && task.status === "backlog" && (
 						<Button
-							variant="accent"
+							variant="default"
 							size="sm"
 							onClick={() => onStatusChange(task, "in_progress")}
 						>
@@ -187,7 +187,7 @@ export function TaskDetail({
 					{onStatusChange &&
 						(task.status === "in_progress" || task.status === "ready") && (
 							<Button
-								variant="accent"
+								variant="default"
 								size="sm"
 								onClick={() => onStatusChange(task, "done")}
 							>

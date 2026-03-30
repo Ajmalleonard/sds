@@ -22,7 +22,7 @@ function SelectField({ name, label, description, placeholder, options, disabled 
       render={({ field }) => (
         <FormItem>
           {label && <FormLabel>{label}</FormLabel>}
-          <Select onValueChange={field.onChange} defaultValue={field.value} disabled={disabled}>
+          <Select onChange={field.onChange} value={field.value} disabled={disabled}>
             <FormControl>
               <SelectTrigger>
                 <SelectValue placeholder={placeholder} />

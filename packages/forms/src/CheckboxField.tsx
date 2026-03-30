@@ -17,7 +17,7 @@ function CheckboxField({ name, label, description, disabled }: CheckboxFieldProp
           <FormControl>
             <Checkbox
               checked={field.value}
-              onCheckedChange={field.onChange}
+              onChange={field.onChange}
               disabled={disabled}
             />
           </FormControl>

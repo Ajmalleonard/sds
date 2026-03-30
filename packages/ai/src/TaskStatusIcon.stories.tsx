@@ -59,16 +59,6 @@ export const Large: StoryObj = {
   args: { status: 'done', size: 32 },
 };
 
-// --- TaskPriorityIcon ---
-const priorityMeta = {
-  title: 'AI/TaskPriorityIcon',
-  component: TaskPriorityIcon,
-  parameters: {
-    layout: 'centered',
-  },
-  tags: ['autodocs'],
-} satisfies Meta<typeof TaskPriorityIcon>;
-
 export const AllPriorities: StoryObj = {
   render: () => (
     <div className="flex items-center gap-4">

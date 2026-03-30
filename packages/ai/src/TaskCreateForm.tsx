@@ -71,7 +71,7 @@ export function TaskCreateForm({
 					))}
 				</select>
 				<Button
-					variant="accent"
+					variant="default"
 					size="sm"
 					disabled={!canSubmit}
 					onClick={handleSubmit}
