@@ -5,6 +5,10 @@ node_modules/
 # Build outputs
 dist/
 *.tsbuildinfo
+storybook-static/
+
+# Next.js
+next-env.d.ts
 
 # Environment
 .env

@@ -576,13 +576,13 @@
 <header>
   <div class="wrap">
     <h1>Manifest Debugger</h1>
-    <div class="summary"><a class="filter-pill all" data-k="all" href="#filter-all">All</a><a class="filter-pill err" data-k="errors" href="#filter-errors">3/53 prop type errors</a><a class="filter-pill info" data-k="infos" href="#filter-infos">52/53 infos</a><span class="filter-pill ok" aria-disabled="true">235 stories ok</span></div>
+    <div class="summary"><a class="filter-pill all" data-k="all" href="#filter-all">All</a><a class="filter-pill err" data-k="errors" href="#filter-errors">3/53 prop type errors</a><a class="filter-pill info" data-k="infos" href="#filter-infos">52/53 infos</a><span class="filter-pill ok" aria-disabled="true">237 stories ok</span></div>
   </div>
 </header>
 <main>
   <div class="wrap">
     <div class="note info" style="margin-bottom: 16px;">
-            <strong>Tip:</strong> You are using <code>react-docgen</code> (the default). Generation took <strong>1.1s</strong>. For higher quality prop types, consider switching to <code>react-docgen-typescript</code> in your <code>main.ts</code>:
+            <strong>Tip:</strong> You are using <code>react-docgen</code> (the default). Generation took <strong>2.3s</strong>. For higher quality prop types, consider switching to <code>react-docgen-typescript</code> in your <code>main.ts</code>:
             <pre><code>typescript: {
   reactDocgen: 'react-docgen-typescript',
 }</code></pre>
@@ -2739,21 +2739,7 @@ onSubmit?: ReturnType&lt;UseFormHandleSubmit&lt;T&gt;&gt;</code></pre>
               </div>
               
               
-              <pre><code>const Disabled = () =&gt; (
-  &lt;Form 
-    form={useForm({ defaultValues: { test: &#39;Locked value&#39; } })} 
-    disabled 
-    className=&quot;flex flex-col gap-4 w-80&quot;
-  &gt;
-    &lt;div className=&quot;flex flex-col gap-1.5&quot;&gt;
-      &lt;Label slug=&quot;test&quot;&gt;Disabled Field&lt;/Label&gt;
-      &lt;Input id=&quot;test&quot; defaultValue=&quot;Locked value&quot; disabled /&gt;
-    &lt;/div&gt;
-    &lt;Button variant=&quot;default&quot; disabled&gt;
-      Submit
-    &lt;/Button&gt;
-  &lt;/Form&gt;
-);</code></pre>
+              <pre><code>const Disabled = () =&gt; &lt;DisabledForm /&gt;;</code></pre>
             </div>
         </div>
     
@@ -3400,9 +3386,9 @@ type?: string = &#39;text&#39;</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> Loader</h2>
       <div class="badges">
-        <label for="c-19-primitives-loader-props" class="badge ok as-toggle">2 prop types</label>
+        
         <label for="c-19-primitives-loader-info" class="badge info as-toggle">1 info</label>
-        <label for="c-19-primitives-loader-stories" class="badge ok as-toggle">3 stories</label>
+        <label for="c-19-primitives-loader-stories" class="badge ok as-toggle">5 stories</label>
         
       </div>
     </div>
@@ -3417,7 +3403,7 @@ type?: string = &#39;text&#39;</code></pre>
   <input id="c-19-primitives-loader-info" class="tg tg-info" type="checkbox" hidden />
   <input id="c-19-primitives-loader-stories" class="tg tg-stories" type="checkbox" hidden />
   
-  <input id="c-19-primitives-loader-props" class="tg tg-props" type="checkbox" hidden />
+  
 
   <div class="panels">
     
@@ -3430,19 +3416,6 @@ type?: string = &#39;text&#39;</code></pre>
     </div>
         </div>
     
-        <div class="panel panel-props">
-          <div class="note ok">
-            <div class="row">
-              <span class="ex-name">Prop types <small>(react-docgen)</small></span>
-              <span class="badge ok">2 prop types</span>
-            </div>
-            <pre><code>Component: ../packages/primitives/src/Loader.tsx::Loader</code></pre>
-            <pre><code>Props:</code></pre>
-            <pre><code>className?: string
-
-color?: string</code></pre>
-          </div>
-        </div>
     
         <div class="panel panel-stories">
           
@@ -3452,7 +3425,7 @@ color?: string</code></pre>
                 <div class="row">
                   <span class="ex-name">Imports</span>
                 </div>
-                <pre><code>import { Loader } from "@square-experience/primitives";</code></pre>
+                <pre><code>import { Loader, LoaderIcon } from "@square-experience/primitives";</code></pre>
               </div>
           
           
@@ -3463,25 +3436,79 @@ color?: string</code></pre>
               </div>
               
               
-              <pre><code>const Default = () =&gt; &lt;Loader /&gt;;</code></pre>
+              <pre><code>const Default = () =&gt; (
+  &lt;div className=&quot;bg-app p-8 rounded-lg flex gap-4&quot;&gt;
+    &lt;Loader /&gt;
+  &lt;/div&gt;
+);</code></pre>
             </div>
             <div class="note ok">
               <div class="row">
-                <span class="ex-name">Custom Color</span>
+                <span class="ex-name">Sizes</span>
                 <span class="badge ok">story ok</span>
               </div>
               
               
-              <pre><code>const CustomColor = () =&gt; &lt;Loader color=&quot;#ff6b6b&quot; /&gt;;</code></pre>
+              <pre><code>const Sizes = () =&gt; (
+  &lt;div className=&quot;bg-app p-8 rounded-lg flex items-center gap-8&quot;&gt;
+    &lt;Loader size=&quot;sm&quot; /&gt;
+    &lt;Loader size=&quot;md&quot; /&gt;
+    &lt;Loader size=&quot;lg&quot; /&gt;
+  &lt;/div&gt;
+);</code></pre>
             </div>
             <div class="note ok">
               <div class="row">
-                <span class="ex-name">Custom Class</span>
+                <span class="ex-name">Loader Icon Demo</span>
                 <span class="badge ok">story ok</span>
               </div>
               
               
-              <pre><code>const CustomClass = () =&gt; &lt;Loader className=&quot;size-12&quot; /&gt;;</code></pre>
+              <pre><code>const LoaderIconDemo = () =&gt; (
+  &lt;div className=&quot;bg-app p-8 rounded-lg grid grid-cols-3 gap-8&quot;&gt;
+    {([&#39;default&#39;, &#39;primary&#39;, &#39;success&#39;, &#39;warning&#39;, &#39;destructive&#39;, &#39;white&#39;] as const).map((variant) =&gt; (
+      &lt;div key={variant} className=&quot;flex flex-col items-center gap-2&quot;&gt;
+        &lt;LoaderIcon variant={variant} /&gt;
+        &lt;span className=&quot;text-ink-dull text-xs capitalize&quot;&gt;{variant}&lt;/span&gt;
+      &lt;/div&gt;
+    ))}
+  &lt;/div&gt;
+);</code></pre>
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Loader Icon Sizes</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const LoaderIconSizes = () =&gt; (
+  &lt;div className=&quot;bg-app p-8 rounded-lg flex items-center gap-8&quot;&gt;
+    &lt;LoaderIcon size=&quot;sm&quot; /&gt;
+    &lt;LoaderIcon size=&quot;md&quot; /&gt;
+    &lt;LoaderIcon size=&quot;lg&quot; /&gt;
+  &lt;/div&gt;
+);</code></pre>
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">In Button</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const InButton = () =&gt; (
+  &lt;div className=&quot;bg-app p-8 rounded-lg flex gap-4&quot;&gt;
+    &lt;button className=&quot;bg-accent text-white px-4 py-2 rounded-md flex items-center gap-2&quot;&gt;
+      &lt;LoaderIcon size=&quot;sm&quot; variant=&quot;white&quot; /&gt;
+      Loading...
+    &lt;/button&gt;
+    &lt;button className=&quot;bg-app-box text-ink px-4 py-2 rounded-md flex items-center gap-2&quot;&gt;
+      &lt;LoaderIcon size=&quot;sm&quot; /&gt;
+      Processing
+    &lt;/button&gt;
+  &lt;/div&gt;
+);</code></pre>
             </div>
         </div>
     
