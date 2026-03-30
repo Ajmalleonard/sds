@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Tooltip, Kbd } from './Tooltip';
+import { Tooltip, Kbd, type TooltipProps } from './Tooltip';
 
 const meta = {
   title: 'Primitives/Tooltip',
@@ -24,7 +24,7 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  render: (args) => (
+  render: (args: TooltipProps) => (
     <Tooltip {...args}>
       <button className="px-4 py-2 bg-app-box border border-app-line rounded-md text-ink text-sm">
         Hover me
@@ -35,7 +35,7 @@ export const Default: Story = {
 
 export const Top: Story = {
   args: { position: 'top' },
-  render: (args) => (
+  render: (args: TooltipProps) => (
     <Tooltip {...args}>
       <button className="px-4 py-2 bg-app-box border border-app-line rounded-md text-ink text-sm">
         Top tooltip
@@ -49,7 +49,7 @@ export const WithKeybinds: Story = {
     label: 'Save file',
     keybinds: ['⌘', 'S'],
   },
-  render: (args) => (
+  render: (args: TooltipProps) => (
     <Tooltip {...args}>
       <button className="px-4 py-2 bg-app-box border border-app-line rounded-md text-ink text-sm">
         Save

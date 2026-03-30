@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { CircularProgress } from './CircularProgress';
+import { CircularProgress, type CircularProgressProps } from './CircularProgress';
 
 const meta = {
   title: 'Primitives/CircularProgress',
@@ -54,7 +54,7 @@ export const WithChild: Story = {
   args: {
     progress: 75,
   },
-  render: (args) => (
+  render: (args: CircularProgressProps) => (
     <CircularProgress {...args}>
       <span className="text-ink font-bold text-lg">75%</span>
     </CircularProgress>
