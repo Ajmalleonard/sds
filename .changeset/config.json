@@ -4,9 +4,15 @@
   "commit": false,
   "fixed": [],
   "linked": [
-    ["@square-experience/primitives", "@square-experience/forms", "@square-experience/ai", "@square-experience/explorer"]
+    [
+      "@square-experience/primitives",
+      "@square-experience/forms",
+      "@square-experience/ai",
+      "@square-experience/explorer",
+      "@square-experience/tokens"
+    ]
   ],
-  "access": "restricted",
+  "access": "public",
   "baseBranch": "main",
   "updateInternalDependencies": "patch",
   "ignore": []

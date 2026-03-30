@@ -1,6 +1,9 @@
 {
 	"name": "@square-experience/tokens",
 	"version": "0.0.1",
+	"publishConfig": {
+		"access": "public"
+	},
 	"description": "Design tokens for Square Experience - Pure CSS for Tailwind v4",
 	"type": "module",
 	"exports": {
