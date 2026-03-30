@@ -40,6 +40,22 @@
 			"style": "./src/css/themes/mocha.css",
 			"default": "./src/css/themes/mocha.css"
 		},
+		"./css/themes/neon-lime": {
+			"style": "./src/css/themes/neon-lime.css",
+			"default": "./src/css/themes/neon-lime.css"
+		},
+		"./css/themes/pink": {
+			"style": "./src/css/themes/pink.css",
+			"default": "./src/css/themes/pink.css"
+		},
+		"./css/themes/orange": {
+			"style": "./src/css/themes/orange.css",
+			"default": "./src/css/themes/orange.css"
+		},
+		"./css/themes/elegant": {
+			"style": "./src/css/themes/elegant.css",
+			"default": "./src/css/themes/elegant.css"
+		},
 		"./raw-colors": {
 			"import": "./raw-colors.cjs",
 			"require": "./raw-colors.cjs"

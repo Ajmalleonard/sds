@@ -31,7 +31,7 @@ const useResizableContext = () => {
 	return context;
 };
 
-interface ResizableProps
+export interface ResizableProps
 	extends Omit<PropsWithChildren<UseResizableProps>, "axis"> {
 	axis?: UseResizableProps["axis"];
 	collapsed?: boolean;

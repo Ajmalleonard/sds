@@ -96,10 +96,10 @@ export default function ShowcasePage() {
               </CardHeader>
               <CardContent className="flex flex-wrap gap-2">
                 <Button>Default</Button>
-                <Button variant="gray">Gray</Button>
-                <Button variant="subtle">Subtle</Button>
+                <Button variant="secondary">Primary</Button>
+                <Button variant="ghost">Ghost</Button>
                 <Button variant="outline">Outline</Button>
-                <Button variant="accent">Accent</Button>
+                <Button variant="destructive">Destructive</Button>
                 <Button size="sm">Small</Button>
                 <Button size="lg">Large</Button>
               </CardContent>

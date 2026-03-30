@@ -84,7 +84,8 @@ export { toast, Toaster, TOAST_TIMEOUT } from "./Toast";
 export type { ToastId, ToastMessage } from "./Toast";
 
 // Loader
-export { Loader } from "./Loader";
+export { Loader, LoaderIcon, loaderVariants } from "./Loader";
+export type { LoaderProps } from "./Loader";
 
 // Divider
 export { Divider } from "./Divider";
@@ -140,6 +141,11 @@ export type { OSforKeys } from "./keys";
 
 // Utilities
 export { tw } from "./utils";
+
+// Theme
+export { ThemeProvider, useTheme, themeNames, themeLabels } from "./ThemeProvider";
+export type { ThemeName } from "./ThemeProvider";
+export { ThemeSwitcher } from "./ThemeSwitcher";
 
 // Forms
 export { Form, ErrorMessage, errorStyles, z } from "./forms/Form";

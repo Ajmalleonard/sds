@@ -3,3 +3,9 @@
 
 @import "./theme.css";
 @import "./themes/dark.css";
+
+/* Brand Themes */
+@import "./themes/neon-lime.css";
+@import "./themes/pink.css";
+@import "./themes/orange.css";
+@import "./themes/elegant.css";

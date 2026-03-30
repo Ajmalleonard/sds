@@ -12,6 +12,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { ToolCall } from './ToolCall';
 import type { TranscriptStep } from './types';
 import { pairTranscriptSteps } from './types';
+import { Loader } from '@square-experience/primitives';
 
 interface InlineWorkerCardProps {
 	title: string;
@@ -58,9 +59,8 @@ function InlineWorkerCard({
 					<div className="mt-0.5 shrink-0">
 						{isRunning ? (
 							<div className="flex size-7 items-center justify-center rounded-full bg-accent/15 text-accent">
-								<ClockCounterClockwiseIcon
-									className="size-4 animate-spin"
-									weight="bold"
+								<Loader
+
 								/>
 							</div>
 						) : isDone ? (
